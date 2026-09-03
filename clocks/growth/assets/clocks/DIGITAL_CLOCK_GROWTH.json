@@ -1,0 +1,81 @@
+{
+  "id": "DIGITAL_CLOCK_GROWTH",
+  "name": "@string/digital_clock_growth_name",
+  "description": "@string/digital_clock_growth_description",
+  "thumbnail": "@drawable/growth_thumbnail",
+  "large": {
+    "faceLayout": "TWO_PAIRS_VERTICAL",
+    "layers": [
+      {
+        "type": "digital-hand",
+        "timespec": "DIGIT_PAIR",
+        "style": {
+          "type": "font-style",
+          "fontSizeScale": 1.25,
+          "fontVariation": "'wght' 500",
+          "fontFamily": "growth.ttf",
+          "lineHeight": 221.88
+        },
+        "aodStyle": {
+          "type": "font-style",
+          "fontSizeScale": 1.06,
+          "fontVariation": "'wght' 50",
+          "borderWidth": "0dp",
+          "fillColorLight": "@android:color/system_accent1_100",
+          "renderType": "CHANGE_WEIGHT"
+        },
+        "alignment": {
+          "horizontalAlignment": "CENTER",
+          "verticalAlignment": "BOTTOM"
+        },
+        "dateTimeFormat": "hh"
+      },
+      {
+        "type": "digital-hand",
+        "timespec": "DIGIT_PAIR",
+        "style": {
+          "type": "font-style",
+          "fontSizeScale": 1.25,
+          "fontVariation": "'wght' 500",
+          "fontFamily": "growth.ttf",
+          "lineHeight": 221.88
+        },
+        "aodStyle": {
+          "type": "font-style",
+          "fontSizeScale": 1.06,
+          "fontVariation": "'wght' 50",
+          "borderWidth": "0dp",
+          "fillColorLight": "@android:color/system_accent1_100",
+          "renderType": "CHANGE_WEIGHT"
+        },
+        "alignment": {
+          "horizontalAlignment": "CENTER",
+          "verticalAlignment": "TOP"
+        },
+        "dateTimeFormat": "mm"
+      }
+    ]
+  },
+  "small": {
+    "layers": [
+      {
+        "type": "digital-hand",
+        "timespec": "TIME_FULL_FORMAT",
+        "style": {
+          "type": "font-style",
+          "fontSizeScale": "1.04",
+          "fontVariation": "'wght' 500",
+          "fontFamily": "growth.ttf"
+        },
+        "aodStyle": {
+          "type": "font-style",
+          "fontVariation": "'wght' 50",
+          "borderWidth": "0dp",
+          "fillColorLight": "@android:color/system_accent1_100",
+          "renderType": "CHANGE_WEIGHT"
+        },
+        "dateTimeFormat": "h:mm"
+      }
+    ]
+  }
+}

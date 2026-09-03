@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_clock_weather_description">Digitālais pulkstenis ar laikapstākļu informāciju</string>
+    <string name="digital_clock_weather_name">Digitālais — laikapstākļi</string>
+</resources>

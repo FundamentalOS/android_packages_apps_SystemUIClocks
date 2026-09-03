@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_clock_numberoverlap_description">(M)‏‮Digital‬‏ ‏‮overlapping‬‏ ‏‮numerals‬‏</string>
+    <string name="digital_clock_numberoverlap_name">(M)‏‮Number‬‏ ‏‮Overlap‬‏ ‏‮Digital‬‏</string>
+</resources>

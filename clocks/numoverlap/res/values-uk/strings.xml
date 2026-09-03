@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_clock_numberoverlap_description">Числа, що накладаються одне на одне (цифровий)</string>
+    <string name="digital_clock_numberoverlap_name">Числа з накладанням (цифровий)</string>
+</resources>

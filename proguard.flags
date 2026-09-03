@@ -1,0 +1,40 @@
+-include ../../../frameworks/base/packages/SystemUI/proguard_kotlin.flags
+
+-keepattributes Signature,*Annotation*,InnerClasses,EnclosingMethod
+
+# Plugin entry points, discovered by SystemUI through the manifest + @Requires annotation.
+-keep @com.android.systemui.plugins.annotations.Requires class * { *; }
+-keep class com.android.systemui.clocks.**ClockProvider { *; }
+
+# The clock design model is populated by Gson through reflection: keep every field.
+-keep class com.android.systemui.clocks.ClockDesign { *; }
+-keep class com.android.systemui.clocks.ClockDesign$* { *; }
+-keep class com.android.systemui.clocks.ClockFace { *; }
+-keep class com.android.systemui.clocks.ClockFaceScaleInPicker { *; }
+-keep class com.android.systemui.clocks.ClockLayer { *; }
+-keep class * implements com.android.systemui.clocks.ClockLayer { *; }
+-keep class com.android.systemui.clocks.AssetReference { *; }
+-keep class com.android.systemui.clocks.TextStyle { *; }
+-keep class * implements com.android.systemui.clocks.TextStyle { *; }
+-keep class com.android.systemui.clocks.DigitalAlignment { *; }
+-keep class com.android.systemui.clocks.DigitalMarginRatio { *; }
+-keep enum com.android.systemui.clocks.** { *; }
+
+-keepclassmembers class com.android.systemui.clocks.R$* { public static <fields>; }
+-keepclassmembers class com.android.systemui.clocks.*.R$* { public static <fields>; }
+
+# Ensure we're keeping relevant parts of ConstraintSet (used by the face layouts).
+-keepclassmembers class androidx.constraintlayout.widget.ConstraintSet { public *; }
+-keepclassmembers class androidx.constraintlayout.widget.ConstraintSet$* { public *; }
+
+# If we don't keep these compose methods then R8 assumes null return values where it should
+# not, which can NPE at runtime (same rule as the AOSP sample clock).
+-keep !enum androidx.compose.**Scope { *; }
+-keep !enum androidx.compose.runtime.** {
+    *** startRestartGroup(...);
+    *** getApplier(...);
+}
+
+# Lottie resolves value callbacks / key paths on model classes by name.
+-keep class com.airbnb.lottie.** { *; }
+-dontwarn com.airbnb.lottie.**

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="analog_clock_bignum_description">Analogikoa letra lodiekin</string>
+    <string name="analog_clock_bignum_name">Zenbaki handiak (analogikoa)</string>
+</resources>

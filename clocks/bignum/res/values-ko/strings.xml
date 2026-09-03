@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="analog_clock_bignum_description">아날로그 굵은 글꼴</string>
+    <string name="analog_clock_bignum_name">큰 숫자 아날로그</string>
+</resources>

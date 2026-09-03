@@ -1,90 +1,137 @@
-// Pixel lockscreen clock-face plugins for the Pixel 9 family (caimito), extracted from the
-// stock BP4A factory image. Each APK is a SystemUI ClockProviderPlugin, discovered at runtime
-// via the com.android.systemui.action.PLUGIN_CLOCK_PROVIDER intent and rendered on the
-// keyguard / clock picker.
+// Copyright (C) 2026 FundamentalOS
 //
-// Re-signed with the platform key (certificate: "platform") so they share SystemUI's
-// signature and are granted the signature-level com.android.systemui.permission.PLUGIN
-// (the plugin loader requires it); installed as privileged system_ext apps at the stock location
-// (system_ext/priv-app/SystemUIClocks-*). com.android.systemui.permission.PLUGIN is a
-// signature permission, so plugin loading is NOT gated on the signature: on user builds
-// SystemUI only loads plugins whose package is in config_pluginAllowlist (the 7 packages
-// below are added there in vendor/fundamental/overlay/common); on userdebug the gate is
-// bypassed entirely (ro.debuggable).
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//
+// Open-source lockscreen clock plugins for the Pixel 9 family (caimito). Each apk is a SystemUI
+// ClockProviderPlugin (discovered via com.android.systemui.action.PLUGIN_CLOCK_PROVIDER) that
+// renders one of the clock designs shipped on stock Pixel. The rendering engine
+// (com.android.systemui.clocks, engine/) is FundamentalOS' own code built on the AOSP plugin API
+// (SystemUIPluginLib) and clock helpers (SystemUIClocks-CommonLib); the per-clock artwork under
+// clocks/*/{assets,res} is Google's, copied verbatim so the clocks render identically.
+//
+// The apks are platform-signed so they share SystemUI's signature and are granted the
+// signature-level com.android.systemui.permission.PLUGIN the plugin loader requires, and they are
+// installed at the stock location (system_ext/priv-app/SystemUIClocks-*) with the stock package
+// names so the existing config_pluginAllowlist entries cover them.
 
-android_app_import {
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+// Shared engine (no artwork), linked into each clock apk.
+android_library {
+    name: "FundamentalClocksEngine",
+    manifest: "engine/AndroidManifest.xml",
+    srcs: ["engine/src/**/*.kt"],
+    resource_dirs: ["engine/res"],
+    use_resource_processor: true,
+    libs: ["SystemUIPluginLib"],
+    static_libs: [
+        "SystemUIClocks-CommonLib",
+        "PlatformAnimationLib",
+        "PlatformComposeSceneTransitionLayout",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.compose.foundation_foundation-layout",
+        "androidx-constraintlayout_constraintlayout",
+        "androidx.core_core",
+        "gson",
+        "lottie",
+        "monet",
+    ],
+    kotlincflags: ["-Xjvm-default=all"],
+    min_sdk_version: "current",
+    platform_apis: true,
+    system_ext_specific: true,
+}
+
+java_defaults {
+    name: "FundamentalClocksAppDefaults",
+    use_resource_processor: true,
+    libs: ["SystemUIPluginLib"],
+    static_libs: ["FundamentalClocksEngine"],
+    kotlincflags: ["-Xjvm-default=all"],
+    min_sdk_version: "current",
+    platform_apis: true,
+    system_ext_specific: true,
+    privileged: true,
+    certificate: "platform",
+    // Dex shrinking only: the artwork is referenced by name from the JSON designs (via
+    // Resources.getIdentifier), which the resource shrinker cannot see.
+    optimize: {
+        enabled: true,
+        shrink_resources: false,
+        proguard_flags_files: ["proguard.flags"],
+    },
+}
+
+android_app {
     name: "SystemUIClocks-BigNum",
-    apk: "proprietary/system_ext/priv-app/SystemUIClocks-BigNum/SystemUIClocks-BigNum.apk",
-    certificate: "platform",
-    privileged: true,
-    system_ext_specific: true,
-    dex_preopt: {
-        enabled: false,
-    },
+    defaults: ["FundamentalClocksAppDefaults"],
+    manifest: "clocks/bignum/AndroidManifest.xml",
+    srcs: ["clocks/bignum/src/**/*.kt"],
+    resource_dirs: ["clocks/bignum/res"],
+    asset_dirs: ["clocks/bignum/assets"],
 }
 
-android_app_import {
+android_app {
     name: "SystemUIClocks-Calligraphy",
-    apk: "proprietary/system_ext/priv-app/SystemUIClocks-Calligraphy/SystemUIClocks-Calligraphy.apk",
-    certificate: "platform",
-    privileged: true,
-    system_ext_specific: true,
-    dex_preopt: {
-        enabled: false,
-    },
+    defaults: ["FundamentalClocksAppDefaults"],
+    manifest: "clocks/calligraphy/AndroidManifest.xml",
+    srcs: ["clocks/calligraphy/src/**/*.kt"],
+    resource_dirs: ["clocks/calligraphy/res"],
+    asset_dirs: ["clocks/calligraphy/assets"],
 }
 
-android_app_import {
+android_app {
     name: "SystemUIClocks-Growth",
-    apk: "proprietary/system_ext/priv-app/SystemUIClocks-Growth/SystemUIClocks-Growth.apk",
-    certificate: "platform",
-    privileged: true,
-    system_ext_specific: true,
-    dex_preopt: {
-        enabled: false,
-    },
+    defaults: ["FundamentalClocksAppDefaults"],
+    manifest: "clocks/growth/AndroidManifest.xml",
+    srcs: ["clocks/growth/src/**/*.kt"],
+    resource_dirs: ["clocks/growth/res"],
+    asset_dirs: ["clocks/growth/assets"],
 }
 
-android_app_import {
+android_app {
     name: "SystemUIClocks-Inflate",
-    apk: "proprietary/system_ext/priv-app/SystemUIClocks-Inflate/SystemUIClocks-Inflate.apk",
-    certificate: "platform",
-    privileged: true,
-    system_ext_specific: true,
-    dex_preopt: {
-        enabled: false,
-    },
+    defaults: ["FundamentalClocksAppDefaults"],
+    manifest: "clocks/inflate/AndroidManifest.xml",
+    srcs: ["clocks/inflate/src/**/*.kt"],
+    resource_dirs: ["clocks/inflate/res"],
+    asset_dirs: ["clocks/inflate/assets"],
 }
 
-android_app_import {
+android_app {
     name: "SystemUIClocks-Metro",
-    apk: "proprietary/system_ext/priv-app/SystemUIClocks-Metro/SystemUIClocks-Metro.apk",
-    certificate: "platform",
-    privileged: true,
-    system_ext_specific: true,
-    dex_preopt: {
-        enabled: false,
-    },
+    defaults: ["FundamentalClocksAppDefaults"],
+    manifest: "clocks/metro/AndroidManifest.xml",
+    srcs: ["clocks/metro/src/**/*.kt"],
+    resource_dirs: ["clocks/metro/res"],
+    asset_dirs: ["clocks/metro/assets"],
 }
 
-android_app_import {
+android_app {
     name: "SystemUIClocks-NumOverlap",
-    apk: "proprietary/system_ext/priv-app/SystemUIClocks-NumOverlap/SystemUIClocks-NumOverlap.apk",
-    certificate: "platform",
-    privileged: true,
-    system_ext_specific: true,
-    dex_preopt: {
-        enabled: false,
-    },
+    defaults: ["FundamentalClocksAppDefaults"],
+    manifest: "clocks/numoverlap/AndroidManifest.xml",
+    srcs: ["clocks/numoverlap/src/**/*.kt"],
+    resource_dirs: ["clocks/numoverlap/res"],
+    asset_dirs: ["clocks/numoverlap/assets"],
 }
 
-android_app_import {
+android_app {
     name: "SystemUIClocks-Weather",
-    apk: "proprietary/system_ext/priv-app/SystemUIClocks-Weather/SystemUIClocks-Weather.apk",
-    certificate: "platform",
-    privileged: true,
-    system_ext_specific: true,
-    dex_preopt: {
-        enabled: false,
-    },
+    defaults: ["FundamentalClocksAppDefaults"],
+    manifest: "clocks/weather/AndroidManifest.xml",
+    srcs: ["clocks/weather/src/**/*.kt"],
+    resource_dirs: ["clocks/weather/res"],
+    asset_dirs: ["clocks/weather/assets"],
 }

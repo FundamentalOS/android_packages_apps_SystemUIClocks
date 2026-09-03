@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="analog_clock_bignum_description">ऐनालॉग बोल्ड फ़ॉन्ट</string>
+    <string name="analog_clock_bignum_name">BigNum ऐनालॉग</string>
+</resources>

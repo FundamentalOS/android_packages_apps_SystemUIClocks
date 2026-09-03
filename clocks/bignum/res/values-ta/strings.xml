@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="analog_clock_bignum_description">அனலாக் தடிமனான எழுத்து வடிவம்</string>
+    <string name="analog_clock_bignum_name">பெரிய எண்களைக் கொண்ட அனலாக்</string>
+</resources>

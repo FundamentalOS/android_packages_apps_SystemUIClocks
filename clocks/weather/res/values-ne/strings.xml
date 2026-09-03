@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_clock_weather_description">मौसमसम्बन्धी जानकारी देखाइने डिजिटल स्क्रिन</string>
+    <string name="digital_clock_weather_name">Weather Digital</string>
+</resources>

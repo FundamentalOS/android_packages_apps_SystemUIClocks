@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_clock_weather_description">မိုးလေဝသအခြေအနေပါ ဒစ်ဂျစ်တယ်နာရီ</string>
+    <string name="digital_clock_weather_name">မိုးလေဝသ ဒစ်ဂျစ်တယ်</string>
+</resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_clock_numberoverlap_description">Raqamli bir-biriga mos raqamlar</string>
+    <string name="digital_clock_numberoverlap_name">Sonlar ustma-ust tushishi (raqamli)</string>
+</resources>

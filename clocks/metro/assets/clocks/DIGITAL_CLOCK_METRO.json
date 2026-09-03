@@ -1,0 +1,328 @@
+{
+  "id": "DIGITAL_CLOCK_METRO",
+  "name": "@string/digital_clock_metro_name",
+  "description": "@string/digital_clock_metro_description",
+  "thumbnail": "@drawable/metro_thumbnail",
+  "large": {
+    "faceLayout": "FOUR_DIGITS_ALIGN_CENTER",
+    "layers": [
+      {
+        "type": "digital-hand",
+        "timespec": "FIRST_DIGIT",
+        "style": {
+          "type": "lottie-style",
+          "fillColorLightMap": {
+            "Color 1":"@android:color/system_accent1_100",
+            "Color 2":"@android:color/system_accent1_550",
+            "Color 3":"@android:color/system_accent1_350",
+            "Color 4":"@android:color/system_accent1_200"
+          },
+          "fillColorDarkMap": {
+            "Color 1":"@android:color/system_accent1_800",
+            "Color 2":"@android:color/system_accent1_900",
+            "Color 3":"@android:color/system_accent1_650",
+            "Color 4":"@android:color/system_accent1_450"
+          },
+          "numbers": [
+            "lotties/0_SIMPLIFIED_V3E.json",
+            "lotties/1_SIMPLIFIED_V3E.json",
+            "lotties/2_SIMPLIFIED_V3E.json",
+            "lotties/3_SIMPLIFIED_V3E.json",
+            "lotties/4_SIMPLIFIED_V3E.json",
+            "lotties/5_SIMPLIFIED_V3E.json",
+            "lotties/6_SIMPLIFIED_V3E.json",
+            "lotties/7_SIMPLIFIED_V3E.json",
+            "lotties/8_SIMPLIFIED_V3E.json",
+            "lotties/9_SIMPLIFIED_V3E.json"
+          ],
+          "colon": "@drawable/digital_metro_colon",
+          "paddingVertical": "4dp",
+          "paddingHorizontal": "4dp"
+        },
+        "alignment": {
+          "horizontalAlignment": "CENTER",
+          "verticalAlignment": "CENTER"
+        },
+        "dateTimeFormat": "hh"
+      },
+      {
+        "type": "digital-hand",
+        "timespec": "SECOND_DIGIT",
+        "style": {
+          "type": "lottie-style",
+          "fillColorLightMap": {
+            "Color 1":"@android:color/system_accent1_100",
+            "Color 2":"@android:color/system_accent1_550",
+            "Color 3":"@android:color/system_accent1_350",
+            "Color 4":"@android:color/system_accent1_200"
+          },
+          "fillColorDarkMap": {
+            "Color 1":"@android:color/system_accent1_800",
+            "Color 2":"@android:color/system_accent1_900",
+            "Color 3":"@android:color/system_accent1_650",
+            "Color 4":"@android:color/system_accent1_450"
+          },
+          "numbers": [
+            "lotties/0_SIMPLIFIED_V3E.json",
+            "lotties/1_SIMPLIFIED_V3E.json",
+            "lotties/2_SIMPLIFIED_V3E.json",
+            "lotties/3_SIMPLIFIED_V3E.json",
+            "lotties/4_SIMPLIFIED_V3E.json",
+            "lotties/5_SIMPLIFIED_V3E.json",
+            "lotties/6_SIMPLIFIED_V3E.json",
+            "lotties/7_SIMPLIFIED_V3E.json",
+            "lotties/8_SIMPLIFIED_V3E.json",
+            "lotties/9_SIMPLIFIED_V3E.json"
+          ],
+          "colon": "@drawable/digital_metro_colon",
+          "paddingVertical": "4dp",
+          "paddingHorizontal": "4dp"
+        },
+        "alignment": {
+          "horizontalAlignment": "CENTER",
+          "verticalAlignment": "CENTER"
+        },
+        "dateTimeFormat": "hh"
+      },
+      {
+        "type": "digital-hand",
+        "timespec": "FIRST_DIGIT",
+        "style": {
+          "type": "lottie-style",
+          "fillColorLightMap": {
+            "Color 1":"@android:color/system_accent1_100",
+            "Color 2":"@android:color/system_accent1_550",
+            "Color 3":"@android:color/system_accent1_350",
+            "Color 4":"@android:color/system_accent1_200"
+          },
+          "fillColorDarkMap": {
+            "Color 1":"@android:color/system_accent1_800",
+            "Color 2":"@android:color/system_accent1_900",
+            "Color 3":"@android:color/system_accent1_650",
+            "Color 4":"@android:color/system_accent1_450"
+          },
+          "numbers": [
+            "lotties/0_SIMPLIFIED_V3E.json",
+            "lotties/1_SIMPLIFIED_V3E.json",
+            "lotties/2_SIMPLIFIED_V3E.json",
+            "lotties/3_SIMPLIFIED_V3E.json",
+            "lotties/4_SIMPLIFIED_V3E.json",
+            "lotties/5_SIMPLIFIED_V3E.json",
+            "lotties/6_SIMPLIFIED_V3E.json",
+            "lotties/7_SIMPLIFIED_V3E.json",
+            "lotties/8_SIMPLIFIED_V3E.json",
+            "lotties/9_SIMPLIFIED_V3E.json"
+          ],
+          "colon": "@drawable/digital_metro_colon",
+          "paddingVertical": "4dp",
+          "paddingHorizontal": "4dp"
+        },
+        "alignment": {
+          "horizontalAlignment": "CENTER",
+          "verticalAlignment": "CENTER"
+        },
+        "dateTimeFormat": "mm"
+      },
+      {
+        "type": "digital-hand",
+        "timespec": "SECOND_DIGIT",
+        "style": {
+          "type": "lottie-style",
+          "fillColorLightMap": {
+            "Color 1":"@android:color/system_accent1_100",
+            "Color 2":"@android:color/system_accent1_550",
+            "Color 3":"@android:color/system_accent1_350",
+            "Color 4":"@android:color/system_accent1_200"
+          },
+          "fillColorDarkMap": {
+            "Color 1":"@android:color/system_accent1_800",
+            "Color 2":"@android:color/system_accent1_900",
+            "Color 3":"@android:color/system_accent1_650",
+            "Color 4":"@android:color/system_accent1_450"
+          },
+          "numbers": [
+            "lotties/0_SIMPLIFIED_V3E.json",
+            "lotties/1_SIMPLIFIED_V3E.json",
+            "lotties/2_SIMPLIFIED_V3E.json",
+            "lotties/3_SIMPLIFIED_V3E.json",
+            "lotties/4_SIMPLIFIED_V3E.json",
+            "lotties/5_SIMPLIFIED_V3E.json",
+            "lotties/6_SIMPLIFIED_V3E.json",
+            "lotties/7_SIMPLIFIED_V3E.json",
+            "lotties/8_SIMPLIFIED_V3E.json",
+            "lotties/9_SIMPLIFIED_V3E.json"
+          ],
+          "colon": "@drawable/digital_metro_colon",
+          "paddingVertical": "4dp",
+          "paddingHorizontal": "4dp"
+        },
+        "alignment": {
+          "horizontalAlignment": "CENTER",
+          "verticalAlignment": "CENTER"
+        },
+        "dateTimeFormat": "mm"
+      }
+    ]
+  },
+  "small": {
+    "faceLayout": "FOUR_DIGITS_HORIZONTAL",
+    "layers": [
+      {
+        "type": "digital-hand",
+        "timespec": "FIRST_DIGIT",
+        "style": {
+          "type": "lottie-style",
+          "fillColorLightMap": {
+            "Color 1":"@android:color/system_accent1_100",
+            "Color 2":"@android:color/system_accent1_550",
+            "Color 3":"@android:color/system_accent1_350",
+            "Color 4":"@android:color/system_accent1_200"
+          },
+          "fillColorDarkMap": {
+            "Color 1":"@android:color/system_accent1_800",
+            "Color 2":"@android:color/system_accent1_900",
+            "Color 3":"@android:color/system_accent1_650",
+            "Color 4":"@android:color/system_accent1_450"
+          },
+          "numbers": [
+            "lotties/0_SIMPLIFIED_V3E.json",
+            "lotties/1_SIMPLIFIED_V3E.json",
+            "lotties/2_SIMPLIFIED_V3E.json",
+            "lotties/3_SIMPLIFIED_V3E.json",
+            "lotties/4_SIMPLIFIED_V3E.json",
+            "lotties/5_SIMPLIFIED_V3E.json",
+            "lotties/6_SIMPLIFIED_V3E.json",
+            "lotties/7_SIMPLIFIED_V3E.json",
+            "lotties/8_SIMPLIFIED_V3E.json",
+            "lotties/9_SIMPLIFIED_V3E.json"
+          ],
+          "colon": "@drawable/digital_metro_colon",
+          "paddingVertical": "4dp",
+          "paddingHorizontal": "4dp"
+        },
+        "alignment": {
+          "horizontalAlignment": "CENTER",
+          "verticalAlignment": "CENTER"
+        },
+        "dateTimeFormat": "h"
+      },
+      {
+        "type": "digital-hand",
+        "timespec": "SECOND_DIGIT",
+        "style": {
+          "type": "lottie-style",
+          "fillColorLightMap": {
+            "Color 1":"@android:color/system_accent1_100",
+            "Color 2":"@android:color/system_accent1_550",
+            "Color 3":"@android:color/system_accent1_350",
+            "Color 4":"@android:color/system_accent1_200"
+          },
+          "fillColorDarkMap": {
+            "Color 1":"@android:color/system_accent1_800",
+            "Color 2":"@android:color/system_accent1_900",
+            "Color 3":"@android:color/system_accent1_650",
+            "Color 4":"@android:color/system_accent1_450"
+          },
+          "numbers": [
+            "lotties/0_SIMPLIFIED_V3E.json",
+            "lotties/1_SIMPLIFIED_V3E.json",
+            "lotties/2_SIMPLIFIED_V3E.json",
+            "lotties/3_SIMPLIFIED_V3E.json",
+            "lotties/4_SIMPLIFIED_V3E.json",
+            "lotties/5_SIMPLIFIED_V3E.json",
+            "lotties/6_SIMPLIFIED_V3E.json",
+            "lotties/7_SIMPLIFIED_V3E.json",
+            "lotties/8_SIMPLIFIED_V3E.json",
+            "lotties/9_SIMPLIFIED_V3E.json"
+          ],
+          "colon": "@drawable/digital_metro_colon",
+          "paddingVertical": "4dp",
+          "paddingHorizontal": "4dp"
+        },
+        "alignment": {
+          "horizontalAlignment": "CENTER",
+          "verticalAlignment": "CENTER"
+        },
+        "dateTimeFormat": "h"
+      },
+      {
+        "type": "digital-hand",
+        "timespec": "FIRST_DIGIT",
+        "style": {
+          "type": "lottie-style",
+          "fillColorLightMap": {
+            "Color 1":"@android:color/system_accent1_100",
+            "Color 2":"@android:color/system_accent1_550",
+            "Color 3":"@android:color/system_accent1_350",
+            "Color 4":"@android:color/system_accent1_200"
+          },
+          "fillColorDarkMap": {
+            "Color 1":"@android:color/system_accent1_800",
+            "Color 2":"@android:color/system_accent1_900",
+            "Color 3":"@android:color/system_accent1_650",
+            "Color 4":"@android:color/system_accent1_450"
+          },
+          "numbers": [
+            "lotties/0_SIMPLIFIED_V3E.json",
+            "lotties/1_SIMPLIFIED_V3E.json",
+            "lotties/2_SIMPLIFIED_V3E.json",
+            "lotties/3_SIMPLIFIED_V3E.json",
+            "lotties/4_SIMPLIFIED_V3E.json",
+            "lotties/5_SIMPLIFIED_V3E.json",
+            "lotties/6_SIMPLIFIED_V3E.json",
+            "lotties/7_SIMPLIFIED_V3E.json",
+            "lotties/8_SIMPLIFIED_V3E.json",
+            "lotties/9_SIMPLIFIED_V3E.json"
+          ],
+          "colon": "@drawable/digital_metro_colon",
+          "paddingVertical": "4dp",
+          "paddingHorizontal": "4dp"
+        },
+        "alignment": {
+          "horizontalAlignment": "CENTER",
+          "verticalAlignment": "CENTER"
+        },
+        "dateTimeFormat": "mm"
+      },
+      {
+        "type": "digital-hand",
+        "timespec": "SECOND_DIGIT",
+        "style": {
+          "type": "lottie-style",
+          "fillColorLightMap": {
+            "Color 1":"@android:color/system_accent1_100",
+            "Color 2":"@android:color/system_accent1_550",
+            "Color 3":"@android:color/system_accent1_350",
+            "Color 4":"@android:color/system_accent1_200"
+          },
+          "fillColorDarkMap": {
+            "Color 1":"@android:color/system_accent1_800",
+            "Color 2":"@android:color/system_accent1_900",
+            "Color 3":"@android:color/system_accent1_650",
+            "Color 4":"@android:color/system_accent1_450"
+          },
+          "numbers": [
+            "lotties/0_SIMPLIFIED_V3E.json",
+            "lotties/1_SIMPLIFIED_V3E.json",
+            "lotties/2_SIMPLIFIED_V3E.json",
+            "lotties/3_SIMPLIFIED_V3E.json",
+            "lotties/4_SIMPLIFIED_V3E.json",
+            "lotties/5_SIMPLIFIED_V3E.json",
+            "lotties/6_SIMPLIFIED_V3E.json",
+            "lotties/7_SIMPLIFIED_V3E.json",
+            "lotties/8_SIMPLIFIED_V3E.json",
+            "lotties/9_SIMPLIFIED_V3E.json"
+          ],
+          "colon": "@drawable/digital_metro_colon",
+          "paddingVertical": "4dp",
+          "paddingHorizontal": "4dp"
+        },
+        "alignment": {
+          "horizontalAlignment": "CENTER",
+          "verticalAlignment": "CENTER"
+        },
+        "dateTimeFormat": "mm"
+      }
+    ]
+  }
+}

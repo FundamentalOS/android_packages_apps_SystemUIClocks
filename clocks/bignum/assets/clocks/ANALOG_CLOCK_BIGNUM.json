@@ -1,0 +1,114 @@
+{
+  "id": "ANALOG_CLOCK_BIGNUM",
+  "name": "@string/analog_clock_bignum_name",
+  "description": "@string/analog_clock_bignum_description",
+  "thumbnail": "@drawable/bignum_thumbnail",
+  "large": {
+    "layer-bounds": "FIT",
+    "layers": [
+      {
+        "type": "asset",
+        "asset": {
+          "light": "@drawable/analog_bignum_large_numbers",
+          "lightTint": "@android:color/system_accent1_50+0",
+          "dark": "@drawable/analog_bignum_large_numbers",
+          "darkTint": "@android:color/system_accent1_800+0",
+          "doze": "@drawable/analog_bignum_large_aod_numbers",
+          "dozeTint": "@android:color/system_accent1_100"
+        }
+      },
+      {
+        "type": "analog-hand",
+        "timespec": "HOURS",
+        "tickMode": "SWEEP",
+        "asset": {
+          "light": "@drawable/analog_bignum_large_hour",
+          "lightTint": "@android:color/system_accent3_50+200",
+          "dark": "@drawable/analog_bignum_large_hour",
+          "darkTint": "@android:color/system_accent3_800+200",
+          "doze": "@drawable/analog_bignum_large_aod_hour",
+          "dozeTint": "@android:color/system_accent1_100"
+        }
+      },
+      {
+        "type": "analog-hand",
+        "timespec": "MINUTES",
+        "tickMode": "SWEEP",
+        "asset": {
+          "light": "@drawable/analog_bignum_large_minute",
+          "lightTint": "@android:color/system_accent2_50-300",
+          "dark": "@drawable/analog_bignum_large_minute",
+          "darkTint": "@android:color/system_accent2_750-300",
+          "doze": "@drawable/analog_bignum_large_aod_minute",
+          "dozeTint": "@android:color/system_accent1_100"
+        }
+      },
+      {
+        "type": "analog-hand",
+        "timespec": "SECONDS",
+        "tickMode": "SWEEP",
+        "asset": {
+          "light": "@drawable/analog_bignum_large_second",
+          "lightTint": "@android:color/system_accent2_50+700",
+          "dark": "@drawable/analog_bignum_large_second",
+          "darkTint": "@android:color/system_accent2_800+700",
+          "dozeTint": "@android:color/system_accent1_100"
+        }
+      }
+    ]
+  },
+  "small": {
+    "layer-bounds": "FIT",
+    "layers": [
+      {
+        "type": "asset",
+        "asset": {
+          "light": "@drawable/analog_bignum_small_numbers",
+          "lightTint": "@android:color/system_accent1_50+0",
+          "dark": "@drawable/analog_bignum_small_numbers",
+          "darkTint": "@android:color/system_accent1_800+0",
+          "doze": "@drawable/analog_bignum_small_aod_numbers",
+          "dozeTint": "@android:color/system_accent1_100"
+        }
+      },
+      {
+        "type": "analog-hand",
+        "timespec": "HOURS",
+        "tickMode": "SWEEP",
+        "asset": {
+          "light": "@drawable/analog_bignum_small_hour",
+          "lightTint": "@android:color/system_accent3_50+200",
+          "dark": "@drawable/analog_bignum_small_hour",
+          "darkTint": "@android:color/system_accent3_800+200",
+          "doze": "@drawable/analog_bignum_small_aod_hour",
+          "dozeTint": "@android:color/system_accent1_100"
+        }
+      },
+      {
+        "type": "analog-hand",
+        "timespec": "MINUTES",
+        "tickMode": "SWEEP",
+        "asset": {
+          "light": "@drawable/analog_bignum_small_minute",
+          "lightTint": "@android:color/system_accent2_50-300",
+          "dark": "@drawable/analog_bignum_small_minute",
+          "darkTint": "@android:color/system_accent2_750-300",
+          "doze": "@drawable/analog_bignum_small_aod_minute",
+          "dozeTint": "@android:color/system_accent1_100"
+        }
+      },
+      {
+        "type": "analog-hand",
+        "timespec": "SECONDS",
+        "tickMode": "SWEEP",
+        "asset": {
+          "light": "@drawable/analog_bignum_small_second",
+          "lightTint": "@android:color/system_accent2_50+700",
+          "dark": "@drawable/analog_bignum_small_second",
+          "darkTint": "@android:color/system_accent2_800+700",
+          "dozeTint": "@android:color/system_accent1_100"
+        }
+      }
+    ]
+  }
+}

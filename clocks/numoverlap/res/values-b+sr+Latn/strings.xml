@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_clock_numberoverlap_description">Digitalni sa preklapajućim brojevima</string>
+    <string name="digital_clock_numberoverlap_name">Preklapajući digitalni brojevi</string>
+</resources>

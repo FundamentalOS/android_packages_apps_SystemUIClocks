@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_clock_weather_description">ดิจิทัลแบบมีสภาพอากาศ</string>
+    <string name="digital_clock_weather_name">ดิจิทัลแสดงสภาพอากาศ</string>
+</resources>

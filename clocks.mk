@@ -1,7 +1,6 @@
-# Pixel lockscreen clock-face plugins (caimito), imported presigned from the stock BP4A image.
-# The APKs are Soong modules (Android.bp); this only pulls them into the product. User-build
-# plugin loading is enabled via config_pluginAllowlist in vendor/fundamental/overlay/common.
-# Device-bound: inherited from device/google/caimito/device-<codename>.mk.
+# Open-source Pixel-style lockscreen clock-face plugins (caimito). The apks are Soong modules
+# (Android.bp); this only pulls them into the product. Plugin loading on user builds is enabled
+# via config_pluginAllowlist in vendor/fundamental/overlay/no-rro.
 
 PRODUCT_PACKAGES += \
     SystemUIClocks-BigNum \

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_clock_numberoverlap_description">ओव्‍हरलॅप करणारे अंक असलेले डिजिटल क्लॉक</string>
+    <string name="digital_clock_numberoverlap_name">नंबर ओव्‍हरलॅप डिजिटल</string>
+</resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_clock_inflate_description">डिजिटल फुगवट्यासह क्लॉक फेस</string>
+    <string name="digital_clock_inflate_name">इंफ्लेट डिजिटल</string>
+</resources>

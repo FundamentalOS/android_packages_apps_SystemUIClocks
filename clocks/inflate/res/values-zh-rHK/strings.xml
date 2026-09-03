@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_clock_inflate_description">數碼時鐘 (特大)</string>
+    <string name="digital_clock_inflate_name">充氣數碼時鐘</string>
+</resources>

@@ -1,0 +1,104 @@
+{
+  "id": "DIGITAL_CLOCK_WEATHER",
+  "name": "@string/digital_clock_weather_name",
+  "description": "@string/digital_clock_weather_description",
+  "thumbnail": "@drawable/weather_thumbnail",
+  "large": {
+    "layers": [
+      {
+        "type": "composed-digital-hand",
+        "customizedView": "WeatherClock",
+        "digitalLayers": [
+          {
+            "type": "digital-hand",
+            "timespec": "TIME_FULL_FORMAT",
+            "style": {
+              "type": "font-style",
+              "fontSizeScale": "0.325",
+              "fontVariation": "'wght' 420",
+              "fontFamily": "GoogleSansFlex-Custom-wght94-420.ttf",
+              "borderWidth": "0dp",
+              "lineHeight": 83.88
+            },
+            "aodStyle": {
+              "type": "font-style",
+              "fontVariation": "'wght' 94",
+              "fillColorLight": "@android:color/system_accent1_100",
+              "outlineStr": "#00000000",
+              "borderWidth": "0dp",
+              "renderType": "CHANGE_WEIGHT"
+            },
+            "alignment": {
+              "horizontalAlignment": "LEFT",
+              "verticalAlignment": "TOP"
+            },
+            "dateTimeFormat": "hh mm"
+          },
+          {
+            "type": "digital-hand",
+            "timespec": "DATE_FORMAT",
+            "style": {
+              "type": "font-style",
+              "fontSizeScale": "0.325",
+              "fontVariation": "'wght' 420",
+              "fontFamily": "GoogleSansFlex-Custom-wght94-420.ttf",
+              "borderWidth": "0dp",
+              "lineHeight": 83.88
+            },
+            "aodStyle": {
+              "type": "font-style",
+              "fontVariation": "'wght' 94",
+              "fillColorLight": "@android:color/system_accent1_100",
+              "outlineStr": "#00000000",
+              "borderWidth": "0dp",
+              "renderType": "CHANGE_WEIGHT"
+            },
+            "alignment": {
+              "horizontalAlignment": "RIGHT",
+              "verticalAlignment": "TOP"
+            },
+            "dateTimeFormat": "EEE MMM d"
+          }
+        ]
+      }
+    ],
+    "pickerScale": {
+      "scaleX": 0.5,
+      "scaleY": 0.5
+    }
+  },
+  "small": {
+    "layers": [
+      {
+        "type": "composed-digital-hand",
+        "customizedView": "WeatherClockSmall",
+        "digitalLayers": [
+          {
+            "type": "digital-hand",
+            "timespec": "TIME_FULL_FORMAT",
+            "style": {
+              "type": "font-style",
+              "fontSizeScale": "0.86",
+              "fontVariation": "'wght' 420",
+              "fontFamily": "GoogleSansFlex-Custom-wght94-420.ttf",
+              "borderWidth": "0dp"
+            },
+            "aodStyle": {
+              "type": "font-style",
+              "fontVariation": "'wght' 94",
+              "fillColorLight": "@android:color/system_accent1_100",
+              "outlineStr": "#00000000",
+              "renderType": "CHANGE_WEIGHT",
+              "borderWidth": "0dp"
+            },
+            "alignment": {
+              "horizontalAlignment": "LEFT",
+              "verticalAlignment": "CENTER"
+            },
+            "dateTimeFormat": "hh mm"
+          }
+        ]
+      }
+    ]
+  }
+}

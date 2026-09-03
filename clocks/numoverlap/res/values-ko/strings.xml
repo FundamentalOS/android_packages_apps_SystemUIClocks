@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_clock_numberoverlap_description">숫자가 겹쳐 있는 디지털시계</string>
+    <string name="digital_clock_numberoverlap_name">겹친 숫자 디지털</string>
+</resources>

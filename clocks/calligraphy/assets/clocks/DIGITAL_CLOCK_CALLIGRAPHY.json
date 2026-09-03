@@ -1,0 +1,80 @@
+{
+  "id": "DIGITAL_CLOCK_CALLIGRAPHY",
+  "name": "@string/digital_clock_calligraphy_name",
+  "description": "@string/digital_clock_calligraphy_description",
+  "thumbnail": "@drawable/calligraphy_thumbnail",
+  "large": {
+    "faceLayout": "TWO_PAIRS_VERTICAL",
+    "layers": [
+      {
+        "type": "digital-hand",
+        "timespec": "DIGIT_PAIR",
+        "style": {
+          "type": "font-style",
+          "fontSizeScale": 0.95,
+          "fontFamily": "RotationGX.ttf",
+          "fontVariation": "'wght' 500"
+        },
+        "aodStyle": {
+          "type": "font-style",
+          "fontFamily": "RotationGX.ttf",
+          "borderWidth": "4dp",
+          "outlineColor": "@android:color/system_accent1_100",
+          "renderType": "HOLLOW_TEXT"
+        },
+        "alignment": {
+          "horizontalAlignment": "CENTER",
+          "verticalAlignment": "BOTTOM"
+        },
+        "dateTimeFormat": "hh"
+      },
+      {
+        "type": "digital-hand",
+        "timespec": "DIGIT_PAIR",
+        "style": {
+          "type": "font-style",
+          "fontSizeScale": 0.95,
+          "fontFamily": "RotationGX.ttf",
+          "fontVariation": "'wght' 500"
+        },
+        "aodStyle": {
+          "type": "font-style",
+          "borderWidth": "4dp",
+          "outlineColor": "@android:color/system_accent1_100",
+          "renderType": "HOLLOW_TEXT"
+        },
+        "alignment": {
+          "horizontalAlignment": "CENTER",
+          "verticalAlignment": "TOP"
+        },
+        "dateTimeFormat": "mm"
+      }
+    ],
+    "pickerScale": {
+      "scaleX": 0.8,
+      "scaleY": 0.8
+    }
+  },
+  "small": {
+    "layers": [
+      {
+        "type": "digital-hand",
+        "timespec": "TIME_FULL_FORMAT",
+        "style": {
+          "type": "font-style",
+          "fontSizeScale": "0.77",
+          "fontVariation": "'wght' 500",
+          "fontFamily": "RotationGX.ttf"
+        },
+        "aodStyle": {
+          "type": "font-style",
+          "fontFamily": "RotationGX.ttf",
+          "borderWidth": "4dp",
+          "outlineColor": "@android:color/system_accent1_100",
+          "renderType": "HOLLOW_TEXT"
+        },
+        "dateTimeFormat": "h mm"
+      }
+    ]
+  }
+}

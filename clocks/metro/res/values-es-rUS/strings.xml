@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_clock_metro_description">Reloj digital que simula vías de tren</string>
+    <string name="digital_clock_metro_name">Digital que simula vías de tren</string>
+</resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_clock_weather_description">Digital amb el temps</string>
+    <string name="digital_clock_weather_name">Temps digital</string>
+</resources>

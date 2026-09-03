@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_clock_weather_description">Digital com previsão do tempo</string>
+    <string name="digital_clock_weather_name">Clima (digital)</string>
+</resources>

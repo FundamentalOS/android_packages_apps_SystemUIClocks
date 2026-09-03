@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_clock_numberoverlap_description">Đồng hồ số có chữ số chồng chéo</string>
+    <string name="digital_clock_numberoverlap_name">Đồng hồ số có số chồng chéo</string>
+</resources>

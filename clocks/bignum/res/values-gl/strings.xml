@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="analog_clock_bignum_description">Tipo de letra grosa analóxica</string>
+    <string name="analog_clock_bignum_name">Números grandes (analóxico)</string>
+</resources>

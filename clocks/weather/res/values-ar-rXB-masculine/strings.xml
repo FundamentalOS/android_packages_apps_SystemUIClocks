@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_clock_weather_description">(M)‏‮Digital‬‏ ‏‮with‬‏ ‏‮weather‬‏</string>
+    <string name="digital_clock_weather_name">(M)‏‮Weather‬‏ ‏‮Digital‬‏</string>
+</resources>

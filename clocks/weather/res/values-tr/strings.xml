@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_clock_weather_description">Hava durumu bilgisi olan dijital yazı</string>
+    <string name="digital_clock_weather_name">Hava Durumu Dijital</string>
+</resources>

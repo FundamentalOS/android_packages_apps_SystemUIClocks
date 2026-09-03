@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="analog_clock_bignum_description">(M)‏‮Analog‬‏ ‏‮bold‬‏ ‏‮font‬‏</string>
+    <string name="analog_clock_bignum_name">(M)‏‮BigNum‬‏ ‏‮Analog‬‏</string>
+</resources>

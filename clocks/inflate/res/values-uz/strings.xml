@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_clock_inflate_description">Raqamli soat, toʻldirilgan</string>
+    <string name="digital_clock_inflate_name">Shishirish (raqamli)</string>
+</resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="analog_clock_bignum_description">Vetdruklettertipe vir analoog</string>
+    <string name="analog_clock_bignum_name">Groot Syfers-analoog</string>
+</resources>

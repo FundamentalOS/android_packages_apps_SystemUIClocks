@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_clock_inflate_description">Цифровые часы, наполненный</string>
+    <string name="digital_clock_inflate_name">Воздушные шары (цифровые)</string>
+</resources>

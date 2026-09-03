@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_clock_numberoverlap_description">Skaitmeninis laikrodis su persidengiančiais skaičiais</string>
+    <string name="digital_clock_numberoverlap_name">Skaitmeninis su persidengiančiais skaičiais</string>
+</resources>
