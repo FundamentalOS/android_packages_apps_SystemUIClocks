@@ -3,8 +3,9 @@
 // via the com.android.systemui.action.PLUGIN_CLOCK_PROVIDER intent and rendered on the
 // keyguard / clock picker.
 //
-// Shipped presigned (Google signature preserved) and byte-for-byte (preprocessed) as
-// privileged system_ext apps, matching the stock install location
+// Re-signed with the platform key (certificate: "platform") so they share SystemUI's
+// signature and are granted the signature-level com.android.systemui.permission.PLUGIN
+// (the plugin loader requires it); installed as privileged system_ext apps at the stock location
 // (system_ext/priv-app/SystemUIClocks-*). com.android.systemui.permission.PLUGIN is a
 // signature permission, so plugin loading is NOT gated on the signature: on user builds
 // SystemUI only loads plugins whose package is in config_pluginAllowlist (the 7 packages
@@ -14,8 +15,7 @@
 android_app_import {
     name: "SystemUIClocks-BigNum",
     apk: "proprietary/system_ext/priv-app/SystemUIClocks-BigNum/SystemUIClocks-BigNum.apk",
-    presigned: true,
-    preprocessed: true,
+    certificate: "platform",
     privileged: true,
     system_ext_specific: true,
     dex_preopt: {
@@ -26,8 +26,7 @@ android_app_import {
 android_app_import {
     name: "SystemUIClocks-Calligraphy",
     apk: "proprietary/system_ext/priv-app/SystemUIClocks-Calligraphy/SystemUIClocks-Calligraphy.apk",
-    presigned: true,
-    preprocessed: true,
+    certificate: "platform",
     privileged: true,
     system_ext_specific: true,
     dex_preopt: {
@@ -38,8 +37,7 @@ android_app_import {
 android_app_import {
     name: "SystemUIClocks-Growth",
     apk: "proprietary/system_ext/priv-app/SystemUIClocks-Growth/SystemUIClocks-Growth.apk",
-    presigned: true,
-    preprocessed: true,
+    certificate: "platform",
     privileged: true,
     system_ext_specific: true,
     dex_preopt: {
@@ -50,8 +48,7 @@ android_app_import {
 android_app_import {
     name: "SystemUIClocks-Inflate",
     apk: "proprietary/system_ext/priv-app/SystemUIClocks-Inflate/SystemUIClocks-Inflate.apk",
-    presigned: true,
-    preprocessed: true,
+    certificate: "platform",
     privileged: true,
     system_ext_specific: true,
     dex_preopt: {
@@ -62,8 +59,7 @@ android_app_import {
 android_app_import {
     name: "SystemUIClocks-Metro",
     apk: "proprietary/system_ext/priv-app/SystemUIClocks-Metro/SystemUIClocks-Metro.apk",
-    presigned: true,
-    preprocessed: true,
+    certificate: "platform",
     privileged: true,
     system_ext_specific: true,
     dex_preopt: {
@@ -74,8 +70,7 @@ android_app_import {
 android_app_import {
     name: "SystemUIClocks-NumOverlap",
     apk: "proprietary/system_ext/priv-app/SystemUIClocks-NumOverlap/SystemUIClocks-NumOverlap.apk",
-    presigned: true,
-    preprocessed: true,
+    certificate: "platform",
     privileged: true,
     system_ext_specific: true,
     dex_preopt: {
@@ -86,8 +81,7 @@ android_app_import {
 android_app_import {
     name: "SystemUIClocks-Weather",
     apk: "proprietary/system_ext/priv-app/SystemUIClocks-Weather/SystemUIClocks-Weather.apk",
-    presigned: true,
-    preprocessed: true,
+    certificate: "platform",
     privileged: true,
     system_ext_specific: true,
     dex_preopt: {
