@@ -86,11 +86,7 @@ abstract class WordClockViewBase(context: Context, messageBuffer: MessageBuffer)
         }
     }
 
-    /** Height a line view reports for itself (mirrors SimpleDigitalClockTextView.onMeasure). */
-    fun lineHeight(view: SimpleDigitalClockTextView): Int =
-        view.textBounds.height() + 2 * view.lockScreenPaint.strokeWidth.toInt()
-
-    /** Width a line view reports for itself. */
+    /** Width a line view reports for itself (mirrors SimpleDigitalClockTextView.onMeasure). */
     fun lineWidth(view: SimpleDigitalClockTextView): Int =
         view.textBounds.width() + 2 * view.lockScreenPaint.strokeWidth.toInt()
 
@@ -98,20 +94,32 @@ abstract class WordClockViewBase(context: Context, messageBuffer: MessageBuffer)
     fun linePitch(): Int = (hourView.lockScreenPaint.textSize * LINE_PITCH).roundToInt()
 
     /**
-     * Top offset of each line so that the baselines sit [linePitch] apart. A TOP-aligned line draws
-     * its glyph top at (view top + stroke width), i.e. its baseline is at (top + stroke -
-     * textBounds.top).
+     * Baseline of each line: the font's ascent for the first, then [linePitch] per line. Taken from
+     * the font metrics rather than from the glyphs on screen, so the stack (and the date row the
+     * keyguard hangs below it) stays put when the words change, whatever their ascenders and
+     * descenders.
+     */
+    fun lineBaselines(): IntArray {
+        val first = lines.maxOf { -it.lockScreenPaint.fontMetricsInt.ascent + it.lockScreenPaint.strokeWidth.toInt() }
+        val pitch = linePitch()
+        return IntArray(lines.size) { i -> first + i * pitch }
+    }
+
+    /**
+     * Top offset of each line view. A TOP-aligned line draws its glyph top at (view top + stroke
+     * width), i.e. its baseline sits at (top + stroke - textBounds.top).
      */
     fun lineTops(): IntArray {
-        val ascent = lines.maxOf { -it.textBounds.top + it.lockScreenPaint.strokeWidth.toInt() }
-        val pitch = linePitch()
+        val baselines = lineBaselines()
         return IntArray(lines.size) { i ->
             val line = lines[i]
-            ascent + i * pitch + line.textBounds.top - line.lockScreenPaint.strokeWidth.toInt()
+            baselines[i] + line.textBounds.top - line.lockScreenPaint.strokeWidth.toInt()
         }
     }
 
-    fun stackHeight(): Int = lineTops().last() + lineHeight(lines.last())
+    /** Last baseline plus the font's descent: constant for a given font size. */
+    fun stackHeight(): Int =
+        lineBaselines().last() + lines.maxOf { it.lockScreenPaint.fontMetricsInt.descent + it.lockScreenPaint.strokeWidth.toInt() }
 
     override fun calculateSize(widthMeasureSpec: Int, heightMeasureSpec: Int): Point? {
         if (!isReady) return null

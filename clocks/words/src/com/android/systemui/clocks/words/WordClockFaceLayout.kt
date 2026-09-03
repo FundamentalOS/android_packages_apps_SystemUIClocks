@@ -146,9 +146,13 @@ class WordClockFaceLayoutLarge(
 
     override fun applyAodBurnIn(aodBurnInModel: AodClockBurnInModel) {
         // The keyguard already moves the large clock container vertically together with the date
-        // row (and, for this clock, never scales it), but it leaves the large clock out of the
-        // horizontal burn-in shift; follow the date row sideways too.
+        // row, but it leaves the large clock out of the horizontal burn-in shift; follow the date
+        // row sideways too. This face is never scaled (useAlternateSmartspaceAODTransition), yet
+        // the keyguard can apply its large-clock burn-in scale before it knows that and never
+        // resets it, which shrank the words and pushed them off the date column: undo it here.
         view.translationX = aodBurnInModel.translationX
+        view.scaleX = 1f
+        view.scaleY = 1f
     }
 
     companion object {
