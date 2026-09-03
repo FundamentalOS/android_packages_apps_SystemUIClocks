@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="68dp"
+    android:height="72dp"
+    android:viewportWidth="68"
+    android:viewportHeight="72">
+    <!-- Three word lines: the first one carries the accent tint. -->
+    <path android:fillColor="#FFF6C177" android:pathData="M8,12 h14 a4,4 0 0 1 0,8 h-14 a4,4 0 0 1 0,-8 z" />
+    <path android:fillColor="#FFFFFFFF" android:pathData="M8,32 h24 a4,4 0 0 1 0,8 h-24 a4,4 0 0 1 0,-8 z" />
+    <path android:fillColor="#FFFFFFFF" android:pathData="M8,52 h40 a4,4 0 0 1 0,8 h-40 a4,4 0 0 1 0,-8 z" />
+</vector>

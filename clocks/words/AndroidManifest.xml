@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2026 FundamentalOS. Licensed under the Apache License, Version 2.0. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        package="com.android.systemui.clocks.words">
+
+    <uses-sdk android:minSdkVersion="36" />
+
+    <uses-permission android:name="com.android.systemui.permission.PLUGIN" />
+
+    <application>
+        <service
+            android:name="com.android.systemui.clocks.WordsClockProvider"
+            android:directBootAware="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.android.systemui.action.PLUGIN_CLOCK_PROVIDER" />
+            </intent-filter>
+        </service>
+    </application>
+</manifest>

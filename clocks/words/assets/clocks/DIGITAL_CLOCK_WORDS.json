@@ -1,0 +1,161 @@
+{
+    "id": "DIGITAL_CLOCK_WORDS",
+    "name": "@string/digital_clock_words_name",
+    "description": "@string/digital_clock_words_description",
+    "thumbnail": "@drawable/words_thumbnail",
+    "large": {
+        "layers": [
+            {
+                "type": "composed-digital-hand",
+                "customizedView": "WordClock",
+                "digitalLayers": [
+                    {
+                        "type": "digital-hand",
+                        "timespec": "TIME_FULL_FORMAT",
+                        "dateTimeFormat": "hh:mm",
+                        "style": {
+                            "type": "font-style",
+                            "fontSizeScale": 0.25,
+                            "fontVariation": "'wght' 420",
+                            "fontFamily": "GoogleSansFlex-Custom-wght94-420.ttf",
+                            "borderWidth": "0dp",
+                            "fillColorLight": "@android:color/system_accent1_200",
+                            "fillColorDark": "@android:color/system_accent1_600"
+                        },
+                        "aodStyle": {
+                            "type": "font-style",
+                            "fontVariation": "'wght' 94",
+                            "fillColorLight": "@android:color/system_accent1_100",
+                            "borderWidth": "0dp",
+                            "renderType": "CHANGE_WEIGHT",
+                            "transitionInterpolator": "EMPHASIZED",
+                            "transitionDuration": 700
+                        },
+                        "alignment": {
+                            "horizontalAlignment": "LEFT",
+                            "verticalAlignment": "TOP"
+                        }
+                    },
+                    {
+                        "type": "digital-hand",
+                        "timespec": "DIGIT_PAIR",
+                        "dateTimeFormat": "hh",
+                        "style": {
+                            "type": "font-style",
+                            "fontSizeScale": 0.25,
+                            "fontVariation": "'wght' 420",
+                            "fontFamily": "GoogleSansFlex-Custom-wght94-420.ttf",
+                            "borderWidth": "0dp",
+                            "fillColorLight": "#FFFFFFFF",
+                            "fillColorDark": "@android:color/system_neutral1_900"
+                        },
+                        "aodStyle": {
+                            "type": "font-style",
+                            "fontVariation": "'wght' 94",
+                            "fillColorLight": "#FFFFFFFF",
+                            "borderWidth": "0dp",
+                            "renderType": "CHANGE_WEIGHT",
+                            "transitionInterpolator": "EMPHASIZED",
+                            "transitionDuration": 700
+                        },
+                        "alignment": {
+                            "horizontalAlignment": "LEFT",
+                            "verticalAlignment": "TOP"
+                        }
+                    },
+                    {
+                        "type": "digital-hand",
+                        "timespec": "DIGIT_PAIR",
+                        "dateTimeFormat": "mm",
+                        "style": {
+                            "type": "font-style",
+                            "fontSizeScale": 0.25,
+                            "fontVariation": "'wght' 420",
+                            "fontFamily": "GoogleSansFlex-Custom-wght94-420.ttf",
+                            "borderWidth": "0dp",
+                            "fillColorLight": "#FFFFFFFF",
+                            "fillColorDark": "@android:color/system_neutral1_900"
+                        },
+                        "aodStyle": {
+                            "type": "font-style",
+                            "fontVariation": "'wght' 94",
+                            "fillColorLight": "#FFFFFFFF",
+                            "borderWidth": "0dp",
+                            "renderType": "CHANGE_WEIGHT",
+                            "transitionInterpolator": "EMPHASIZED",
+                            "transitionDuration": 700
+                        },
+                        "alignment": {
+                            "horizontalAlignment": "LEFT",
+                            "verticalAlignment": "TOP"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "small": {
+        "layers": [
+            {
+                "type": "composed-digital-hand",
+                "customizedView": "WordClockSmall",
+                "digitalLayers": [
+                    {
+                        "type": "digital-hand",
+                        "timespec": "DIGIT_PAIR",
+                        "dateTimeFormat": "hh",
+                        "style": {
+                            "type": "font-style",
+                            "fontSizeScale": 0.22,
+                            "fontVariation": "'wght' 420",
+                            "fontFamily": "GoogleSansFlex-Custom-wght94-420.ttf",
+                            "borderWidth": "0dp",
+                            "fillColorLight": "@android:color/system_accent1_200",
+                            "fillColorDark": "@android:color/system_accent1_600"
+                        },
+                        "aodStyle": {
+                            "type": "font-style",
+                            "fontVariation": "'wght' 94",
+                            "fillColorLight": "@android:color/system_accent1_100",
+                            "borderWidth": "0dp",
+                            "renderType": "CHANGE_WEIGHT",
+                            "transitionInterpolator": "EMPHASIZED",
+                            "transitionDuration": 700
+                        },
+                        "alignment": {
+                            "horizontalAlignment": "LEFT",
+                            "verticalAlignment": "TOP"
+                        }
+                    },
+                    {
+                        "type": "digital-hand",
+                        "timespec": "DIGIT_PAIR",
+                        "dateTimeFormat": "mm",
+                        "style": {
+                            "type": "font-style",
+                            "fontSizeScale": 0.22,
+                            "fontVariation": "'wght' 420",
+                            "fontFamily": "GoogleSansFlex-Custom-wght94-420.ttf",
+                            "borderWidth": "0dp",
+                            "fillColorLight": "@android:color/system_accent1_200",
+                            "fillColorDark": "@android:color/system_accent1_600"
+                        },
+                        "aodStyle": {
+                            "type": "font-style",
+                            "fontVariation": "'wght' 94",
+                            "fillColorLight": "@android:color/system_accent1_100",
+                            "borderWidth": "0dp",
+                            "renderType": "CHANGE_WEIGHT",
+                            "transitionInterpolator": "EMPHASIZED",
+                            "transitionDuration": 700
+                        },
+                        "alignment": {
+                            "horizontalAlignment": "LEFT",
+                            "verticalAlignment": "TOP"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

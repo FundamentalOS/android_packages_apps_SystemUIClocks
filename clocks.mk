@@ -9,4 +9,5 @@ PRODUCT_PACKAGES += \
     SystemUIClocks-Inflate \
     SystemUIClocks-Metro \
     SystemUIClocks-NumOverlap \
-    SystemUIClocks-Weather
+    SystemUIClocks-Weather \
+    SystemUIClocks-Words
