@@ -42,7 +42,7 @@ class ClockDesignValidator(
             is AssetLayer -> validateAsset(layer.asset)
             is DigitalHandLayer -> validateDigitalClockHandLayer(layer)
             is AnalogHandLayer -> {
-                check(layer.timespec != null, "Timespec not specified for analog hand")
+                check(isPresent(layer.timespec), "Timespec not specified for analog hand")
                 validateAsset(layer.asset)
             }
             is AnimatedHandLayer -> validateAsset(layer.asset)
@@ -70,6 +70,12 @@ class ClockDesignValidator(
         check(loader.tryReadColor(ref) != null, "Couldn't find color at $ref")
     }
 
+    /**
+     * Gson hydrates the design classes without running their constructors, so a field declared
+     * non-null in Kotlin can still be null when the JSON omits it; check through a nullable view.
+     */
+    private fun <T> isPresent(value: T?): Boolean = value != null
+
     private fun check(condition: Boolean, message: String) {
         if (!condition) errors.add(message)
     }
@@ -86,10 +92,10 @@ class ClockDesignValidator(
     }
 
     private fun validateDigitalClockHandLayer(layer: DigitalHandLayer) {
-        check(layer.timespec != null, "Timespec not specified for digital hand")
+        check(isPresent(layer.timespec), "Timespec not specified for digital hand")
         validateDigitalClockTimeFormat(layer)
         val style = layer.style
-        check(style != null, "Style not specified for digital hand")
+        check(isPresent(style), "Style not specified for digital hand")
         when (style) {
             is FontTextStyle -> {
                 check(style.fontFamily != null, "Style must specify font")
@@ -99,7 +105,7 @@ class ClockDesignValidator(
                 )
             }
             is LottieTextStyle -> {
-                check(style.numbers != null && style.numbers.size == 10, "Style has must have exactly 10 number drawables")
+                check(isPresent(style.numbers) && style.numbers.size == 10, "Style has must have exactly 10 number drawables")
                 check(
                     (style.fillColorDarkMap != null) == (style.fillColorLightMap != null),
                     "Style should specify both a light and dark fill color, or neither",

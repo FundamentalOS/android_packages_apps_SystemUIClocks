@@ -25,7 +25,6 @@ import com.android.internal.graphics.cam.CamUtils
 import com.android.systemui.customization.clocks.TypefaceCache
 import com.android.systemui.log.core.Logger
 import com.android.systemui.log.core.MessageBuffer
-import com.android.systemui.monet.ColorScheme
 import com.android.systemui.monet.TonalPalette
 import java.io.IOException
 import kotlin.math.abs
@@ -35,7 +34,7 @@ import kotlin.math.abs
  * - `#aarrggbb` literal colors
  * - `@[pkg:]type/name` resources, looked up first in the plugin apk then in the host
  * - `@android:color/system_<palette>_<shade>[+/-<offset>]` dynamic colors, resolved from the
- *   clock's own monet [ColorScheme] (built from the picker seed color, or the system theme's
+ *   clock's own monet ColorScheme (built from the picker seed color, or the system theme's
  *   primary key color when following the wallpaper)
  * - bare asset paths relative to [baseDir] (fonts, lotties, raw drawables)
  */
@@ -44,7 +43,9 @@ private constructor(
     private val pluginCtx: Context,
     private val hostCtx: Context,
     private val baseDir: String,
-    private var colorScheme: ColorScheme?,
+    // ColorScheme is deprecated in favour of libmonet's MaterialDynamicColors, which exposes colour
+    // roles rather than the per-palette tonal shades the stock designs address; keep the stock API.
+    @Suppress("DEPRECATION") private var colorScheme: com.android.systemui.monet.ColorScheme?,
     var seedColor: Int?,
     private var overrideChroma: Float?,
     val typefaceCache: TypefaceCache,
@@ -107,7 +108,7 @@ private constructor(
 
         val (res, id, tone) =
             resolveColorResourceId(ref) ?: throw IOException("Failed to parse color: $ref")
-        val color = res.getColor(id)
+        val color = res.getColor(id, null)
         if (tone == null || TonalPalette.SHADE_KEYS.contains(tone.toInt())) {
             logColor("Resources: $ref", color)
             return checkChroma(color)
@@ -196,7 +197,7 @@ private constructor(
         val drawable =
             if (ref.startsWith("@")) {
                 val (res, id) = resolveResourceId(ref) ?: throw IOException("Failed to parse $ref to an id")
-                res.getDrawable(id)
+                res.getDrawable(id, null)
             } else {
                 if (ref.endsWith("xml")) throw IOException("Cannot load xml files from assets")
                 pluginCtx.resources.assets.open(baseDir + ref).use {
@@ -323,14 +324,22 @@ private constructor(
         val seed =
             seedColor
                 ?: getThemeSeedColor(hostCtx).also { logColor("Theme Seed Color", it) }
-        val scheme = ColorScheme(seed, false, this.style)
+        @Suppress("DEPRECATION") val scheme = com.android.systemui.monet.ColorScheme(seed, false, this.style)
         colorScheme = scheme
         val cam = Cam.fromInt(scheme.seed)
-        overrideChroma =
-            if (cam != null && cam.chroma < LOW_CHROMA_LIMIT) cam.chroma * LOW_CHROMA_SCALE else null
+        overrideChroma = if (cam.chroma < LOW_CHROMA_LIMIT) cam.chroma * LOW_CHROMA_SCALE else null
     }
 
     fun getResourcesId(name: String): Int = getResource("id", name) { _, id -> id }
+
+    /** A dimension declared by the plugin or the host (SystemUI), in pixels, or null when neither has it. */
+    fun getDimensionPixelSize(name: String): Int? =
+        try {
+            getResource("dimen", name) { res, id -> res.getDimensionPixelSize(id) }
+        } catch (ex: Exception) {
+            logger.w("Dimension $name not found")
+            null
+        }
 
     fun getString(name: String): String = getResource("string", name) { res, id -> res.getString(id) }
 
@@ -361,6 +370,6 @@ private constructor(
 
         /** Wallpaper-derived primary key color of the host's current theme. */
         private fun getThemeSeedColor(ctx: Context): Int =
-            ctx.resources.getColor(android.R.color.system_palette_key_color_primary_light)
+            ctx.resources.getColor(android.R.color.system_palette_key_color_primary_light, null)
     }
 }

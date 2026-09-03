@@ -15,6 +15,7 @@ import android.graphics.Canvas
 import android.graphics.ColorFilter
 import android.graphics.PixelFormat
 import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import kotlin.math.max
@@ -49,7 +50,7 @@ class AssetDrawable(private val loader: AssetLoader, private val asset: AssetRef
         if (drawable == null || tintRef == null) return
         val color = loader.tryReadColor(tintRef)
         if (color != null) {
-            drawable.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
+            drawable.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY)
         } else {
             drawable.colorFilter = null
         }

@@ -49,7 +49,9 @@ class ComposedDigitalLayerController(
             "NumberOverlapSmall" -> NumberOverlapSmallClockView(ctx, assets, dozeState, messageBuffer)
             "WeatherClock" -> WeatherDigitalClockViewLarge(ctx, assets, messageBuffer)
             "WeatherClockSmall" -> WeatherDigitalClockViewSmall(ctx, assets, messageBuffer)
-            else -> throw IllegalArgumentException("Unrecognized customizedView: ${layer.customizedView}")
+            else ->
+                CustomClockFaces.createView(layer.customizedView, ctx, assets, messageBuffer)
+                    ?: throw IllegalArgumentException("Unrecognized customizedView: ${layer.customizedView}")
         }
 
     init {
@@ -115,7 +117,7 @@ class ComposedDigitalLayerController(
 
             override fun onPickerCarouselSwiping(swipingFraction: Float) = view.onPickerCarouselSwiping(swipingFraction)
 
-            override fun onPositionAnimated(args: ClockPositionAnimationArgs) = view.onPositionAnimated(args)
+            override fun onPositionAnimated(anim: ClockPositionAnimationArgs) = view.onPositionAnimated(anim)
 
             override fun onFidgetTap(x: Float, y: Float) {}
 

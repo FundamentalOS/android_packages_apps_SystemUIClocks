@@ -110,7 +110,7 @@ class SimpleAnalogHandLayerController(
 
             override fun onPickerCarouselSwiping(swipingFraction: Float) {}
 
-            override fun onPositionAnimated(args: ClockPositionAnimationArgs) {}
+            override fun onPositionAnimated(anim: ClockPositionAnimationArgs) {}
 
             override fun onFidgetTap(x: Float, y: Float) {}
 

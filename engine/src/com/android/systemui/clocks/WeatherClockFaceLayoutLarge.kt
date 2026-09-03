@@ -82,6 +82,7 @@ class WeatherClockFaceLayoutLarge(
     val smartspaceBottomMargin: Int
         get() = resources.getDimensionPixelSize(clocksR.dimen.weather_clock_smartspace_bottom_margin)
 
+    @Deprecated("Unsupported with flexiglass. Move to composables.")
     override val views: List<View>
         get() =
             view.digitalClockTextViewMap.values.map { child ->
@@ -173,6 +174,7 @@ class WeatherClockFaceLayoutLarge(
         }
     }
 
+    @Deprecated("Unsupported with flexiglass. Move to composables.")
     override fun applyConstraints(constraints: ConstraintSet): ConstraintSet {
         val paddingStart = resources.getDimensionPixelSize(clocksR.dimen.clock_padding_start)
         val largeClockEnd = constraints.getConstraint(ClockViewIds.LOCKSCREEN_CLOCK_VIEW_LARGE)?.layout?.endToEnd ?: -1
@@ -213,6 +215,7 @@ class WeatherClockFaceLayoutLarge(
         return constraints
     }
 
+    @Deprecated("Unsupported with flexiglass. Move to composables.")
     override fun applyPreviewConstraints(clockPreviewConfig: ClockPreviewConfig, constraints: ConstraintSet): ConstraintSet {
         val paddingStart = resources.getDimensionPixelSize(clocksR.dimen.clock_padding_start)
         val iconPadding = resources.getDimensionPixelSize(clocksR.dimen.weather_date_icon_padding)
@@ -246,6 +249,7 @@ class WeatherClockFaceLayoutLarge(
         return constraints
     }
 
+    @Deprecated("Unsupported with flexiglass. Move to composables.")
     override fun applyExternalDisplayPresentationConstraints(constraints: ConstraintSet): ConstraintSet {
         val paddingStart = resources.getDimensionPixelSize(clocksR.dimen.clock_padding_start)
         val iconPadding = resources.getDimensionPixelSize(clocksR.dimen.weather_date_icon_padding)

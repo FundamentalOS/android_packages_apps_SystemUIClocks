@@ -61,11 +61,17 @@ class SimpleClockController(
 
         config =
             ClockConfig(
-                design.id,
-                design.name?.let { assets.tryReadString(it) ?: it } ?: "",
-                design.description?.let { assets.tryReadString(it) ?: it } ?: "",
-                smallClock.config.hasCustomWeatherDataDisplay || largeClock.config.hasCustomWeatherDataDisplay,
-                smallClock.config.useCustomClockScene || largeClock.config.useCustomClockScene,
+                id = design.id,
+                name = design.name?.let { assets.tryReadString(it) ?: it } ?: "",
+                description = design.description?.let { assets.tryReadString(it) ?: it } ?: "",
+                // Stock behaviour: a clock with its own weather display (Weather) moves with the
+                // smartspace in AOD; faces can also opt in explicitly.
+                useAlternateSmartspaceAODTransition =
+                    smallClock.config.hasCustomWeatherDataDisplay ||
+                        largeClock.config.hasCustomWeatherDataDisplay ||
+                        smallClock.useAlternateSmartspaceAODTransition ||
+                        largeClock.useAlternateSmartspaceAODTransition,
+                useCustomClockScene = smallClock.config.useCustomClockScene || largeClock.config.useCustomClockScene,
             )
     }
 

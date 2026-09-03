@@ -49,6 +49,13 @@ abstract class DigitalClockFaceView(context: Context, messageBuffer: MessageBuff
     open val hasCustomWeatherDataDisplay = false
     open val useCustomClockScene = false
     open val isAlignedWithScreen = false
+    /** True when the face layout places the view itself; the target-region fitting is skipped. */
+    open val positionedByLayout = false
+    /**
+     * True to have the keyguard move this face with the smartspace in AOD instead of scaling it
+     * (see ClockConfig.useAlternateSmartspaceAODTransition).
+     */
+    open val useAlternateSmartspaceAODTransition = false
     open val text: String? = null
 
     protected open fun calculateSize(widthMeasureSpec: Int, heightMeasureSpec: Int): Point? = null

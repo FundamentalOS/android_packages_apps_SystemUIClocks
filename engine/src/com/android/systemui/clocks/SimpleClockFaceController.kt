@@ -76,15 +76,24 @@ class SimpleClockFaceController(
     val layers = mutableListOf<SimpleClockLayerController>()
     val timespecHandler = DigitalTimespecHandler(DigitalTimespec.TIME_FULL_FORMAT, "hh:mm")
 
+    /** Root view of this face; SystemUI is expected to place it through [layout]. */
+    val faceView: View
+
+    @Deprecated("Prefer use of layout")
     override val view: View
+        get() = faceView
     override val config: ClockFaceConfig
+
+    /** Whether this face wants the smartspace-style AOD movement instead of the clock scale. */
+    val useAlternateSmartspaceAODTransition: Boolean
+        get() = (faceView as? DigitalClockFaceView)?.useAlternateSmartspaceAODTransition ?: false
     override val layout: ClockFaceLayout
 
     init {
         val lp = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         lp.gravity = Gravity.CENTER
 
-        view =
+        faceView =
             if (face.layers.size == 1) {
                 val controller = SimpleClockLayerController.Factory.create(ctx, assets, face.layers[0], isLargeClock, messageBuffer)
                 layers.add(controller)
@@ -113,14 +122,19 @@ class SimpleClockFaceController(
             )
 
         layout =
-            if (view is WeatherDigitalClockViewLarge) {
-                WeatherClockFaceLayoutLarge(view, assets, ctx)
+            if (faceView is WeatherDigitalClockViewLarge) {
+                WeatherClockFaceLayoutLarge(faceView, assets, ctx)
             } else {
-                view.id = if (isLargeClock) ClockViewIds.LOCKSCREEN_CLOCK_VIEW_LARGE else ClockViewIds.LOCKSCREEN_CLOCK_VIEW_SMALL
-                if (face.layers.any { it is AnalogHandLayer }) AnalogClockFaceLayout(view, assets)
-                else DefaultClockFaceLayout(view)
+                CustomClockFaces.createLayout(faceView, assets, ctx, isLargeClock) ?: defaultLayout(faceView)
             }
     }
+
+    private fun defaultLayout(faceView: View): ClockFaceLayout {
+        faceView.id = if (isLargeClock) ClockViewIds.LOCKSCREEN_CLOCK_VIEW_LARGE else ClockViewIds.LOCKSCREEN_CLOCK_VIEW_SMALL
+        return if (face.layers.any { it is AnalogHandLayer }) AnalogClockFaceLayout(faceView, assets)
+        else DefaultClockFaceLayout(faceView)
+    }
+
 
     override val events =
         object : ClockEventUnion {
@@ -132,8 +146,8 @@ class SimpleClockFaceController(
 
             override fun onTimeTick() {
                 timespecHandler.updateTime()
-                if (config.tickRate == ClockTickRate.PER_MINUTE || view.contentDescription != timespecHandler.getContentDescription()) {
-                    view.contentDescription = timespecHandler.getContentDescription()
+                if (config.tickRate == ClockTickRate.PER_MINUTE || faceView.contentDescription != timespecHandler.getContentDescription()) {
+                    faceView.contentDescription = timespecHandler.getContentDescription()
                 }
                 layers.forEach { it.faceEvents.onTimeTick() }
             }
@@ -163,8 +177,12 @@ class SimpleClockFaceController(
                 layers.forEach { it.faceEvents.onThemeChanged(theme) }
             }
 
+            // Deprecated upstream ("no longer necessary") but still driven by the connected-display
+            // keyguard presentation, which lays the clock out with a ConstraintLayout.
+            @Suppress("DEPRECATION")
             override fun onTargetRegionChanged(targetRegion: Rect?) {
-                val v = view
+                val v = faceView
+                if (v is DigitalClockFaceView && v.positionedByLayout) return
                 if (v is DigitalClockFaceView && v.isAlignedWithScreen) {
                     val topMargin = v.context.resources.getDimensionPixelSize(clocksR.dimen.keyguard_large_clock_top_margin)
                     targetRegion?.let { region ->
@@ -195,12 +213,12 @@ class SimpleClockFaceController(
                         FrameLayout.LayoutParams((maxWidth * ratio).toInt(), (maxHeight * ratio).toInt())
                     }
                 lp.gravity = Gravity.CENTER
-                view.layoutParams = lp
+                faceView.layoutParams = lp
 
                 targetRegion?.let { region ->
-                    val (dx, dy) = view.computeLayoutDiff(region, isLargeClock)
-                    view.translationX = dx
-                    view.translationY = dy
+                    val (dx, dy) = faceView.computeLayoutDiff(region, isLargeClock)
+                    faceView.translationX = dx
+                    faceView.translationY = dy
                 }
             }
 
@@ -231,21 +249,21 @@ class SimpleClockFaceController(
 
             override fun onPickerCarouselSwiping(swipingFraction: Float) {
                 face.pickerScale?.let { scale ->
-                    view.scaleX = (1 - scale.scaleX) * swipingFraction + scale.scaleX
-                    view.scaleY = (1 - scale.scaleY) * swipingFraction + scale.scaleY
+                    faceView.scaleX = (1 - scale.scaleX) * swipingFraction + scale.scaleX
+                    faceView.scaleY = (1 - scale.scaleY) * swipingFraction + scale.scaleY
                 }
-                val v = view
+                val v = faceView
                 if (!(v is DigitalClockFaceView && v.isAlignedWithScreen)) {
-                    view.translationY =
-                        view.context.resources.getDimensionPixelSize(clocksR.dimen.keyguard_large_clock_top_margin) / 2f *
+                    faceView.translationY =
+                        faceView.context.resources.getDimensionPixelSize(clocksR.dimen.keyguard_large_clock_top_margin) / 2f *
                             swipingFraction
                 }
                 layers.forEach { it.animations.onPickerCarouselSwiping(swipingFraction) }
-                view.invalidate()
+                faceView.invalidate()
             }
 
-            override fun onPositionAnimated(args: ClockPositionAnimationArgs) =
-                layers.forEach { it.animations.onPositionAnimated(args) }
+            override fun onPositionAnimated(anim: ClockPositionAnimationArgs) =
+                layers.forEach { it.animations.onPositionAnimated(anim) }
 
             override fun onFidgetTap(x: Float, y: Float) {}
 
