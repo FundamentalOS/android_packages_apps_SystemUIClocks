@@ -204,6 +204,23 @@ class WordClockFaceLayoutLarge(
 class WordClockFaceLayoutSmall(view: WordClockViewSmall, private val assets: AssetLoader, private val context: Context) :
     DefaultClockFaceLayout(view) {
     @Deprecated("Unsupported with flexiglass. Move to composables.")
+    override fun applyConstraints(constraints: ConstraintSet): ConstraintSet {
+        super.applyConstraints(constraints)
+        // The large layout hangs the small clock container off the large face so that the date row
+        // and the notifications sit below the words. The keyguard applies the target face's layout
+        // last, so while this face is the target put the container back on the keyguard's
+        // guideline: the large face is kept visible while it fades out, and hanging off it would
+        // push the container (and the date row under it) below the incoming notification for the
+        // length of the fade, then snap it up.
+        val guideline = assets.getResourcesId(WordClockFaceLayoutLarge.SMALL_CLOCK_GUIDELINE_TOP)
+        val guideBegin = constraints.getConstraint(guideline)?.layout?.guideBegin ?: -1
+        if (guideline != 0 && guideBegin >= 0) {
+            constraints.connect(ClockViewIds.LOCKSCREEN_CLOCK_VIEW_SMALL, TOP, guideline, BOTTOM)
+        }
+        return constraints
+    }
+
+    @Deprecated("Unsupported with flexiglass. Move to composables.")
     override fun applyPreviewConstraints(clockPreviewConfig: ClockPreviewConfig, constraints: ConstraintSet): ConstraintSet {
         super.applyPreviewConstraints(clockPreviewConfig, constraints)
         WordClockFaceLayoutLarge.pinTopStart(constraints, context.resources, WordClockFaceLayoutLarge.fallbackTop(assets, context))
