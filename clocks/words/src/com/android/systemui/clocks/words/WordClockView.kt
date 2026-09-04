@@ -173,11 +173,16 @@ abstract class WordClockViewBase(context: Context, messageBuffer: MessageBuffer)
     }
 }
 
-/** Large face: "It\u2019s" / hour / minute, placed by [WordClockFaceLayoutLarge]. */
+/**
+ * Large face: "It\u2019s" / hour / minute, placed by [WordClockFaceLayoutLarge].
+ *
+ * Deliberately not a custom clock scene: the only thing that flag does on the keyguard is refresh
+ * the blueprint (with an unanimated constraint pass) whenever the AOD notification icons appear or
+ * disappear, which the weather clock needs for its icon barrier and which here only interferes
+ * with the size transition that the same notification triggers.
+ */
 class WordClockViewLarge(context: Context, val assets: AssetLoader, messageBuffer: MessageBuffer) :
-    WordClockViewBase(context, messageBuffer) {
-    override val useCustomClockScene = true
-}
+    WordClockViewBase(context, messageBuffer)
 
 /** Small (collapsed) face: hour / minute at the top of the small clock slot, tinted by the design. */
 class WordClockViewSmall(context: Context, val assets: AssetLoader, messageBuffer: MessageBuffer) :
