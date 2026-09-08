@@ -48,7 +48,7 @@ private constructor(
     @Suppress("DEPRECATION") private var colorScheme: com.android.systemui.monet.ColorScheme?,
     var seedColor: Int?,
     private var overrideChroma: Float?,
-    val typefaceCache: TypefaceCache,
+    val typefaceCache: TypefaceCache<String>,
     private val getThemeSeedColor: (Context) -> Int,
     messageBuffer: MessageBuffer,
 ) {
@@ -77,7 +77,7 @@ private constructor(
         null,
         null,
         null,
-        TypefaceCache(messageBuffer, TYPEFACE_ANIMATION_FRAME_COUNT) {
+        TypefaceCache<String>(messageBuffer, TYPEFACE_ANIMATION_FRAME_COUNT) {
             Typeface.createFromAsset(pluginCtx.assets, it)
         },
         getThemeSeedColor ?: Companion::getThemeSeedColor,

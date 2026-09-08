@@ -77,13 +77,6 @@ class SimpleClockController(
 
     override val events =
         object : ClockEvents {
-            override var isReactiveTouchInteractionEnabled = false
-                set(value) {
-                    field = value
-                    smallClock.events.isReactiveTouchInteractionEnabled = value
-                    largeClock.events.isReactiveTouchInteractionEnabled = value
-                }
-
             override fun onTimeZoneChanged(timeZone: TimeZone) {
                 smallClock.events.onTimeZoneChanged(timeZone)
                 largeClock.events.onTimeZoneChanged(timeZone)

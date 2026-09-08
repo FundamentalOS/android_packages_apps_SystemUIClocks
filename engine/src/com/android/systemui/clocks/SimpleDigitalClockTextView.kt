@@ -37,6 +37,7 @@ import com.android.systemui.plugins.keyguard.ui.clocks.ThemeConfig
 import kotlin.math.ceil
 import kotlin.math.max
 import kotlin.math.min
+import com.android.systemui.plugins.keyguard.VMeasurePoint
 
 /** Common surface of the text-based and lottie-based digit views. */
 interface SimpleDigitalClockView {
@@ -175,7 +176,7 @@ open class SimpleDigitalClockTextView(
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        getLogger().onMeasure(widthMeasureSpec, heightMeasureSpec)
+        getLogger().onMeasure(VMeasurePoint.fromSpecs(widthMeasureSpec, heightMeasureSpec))
         if (isVertical) {
             super.onMeasure(
                 MeasureSpec.makeMeasureSpec(MeasureSpec.getSize(widthMeasureSpec), MeasureSpec.AT_MOST),

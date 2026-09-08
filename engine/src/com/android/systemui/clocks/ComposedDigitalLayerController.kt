@@ -28,6 +28,7 @@ import com.android.systemui.plugins.keyguard.ui.clocks.ClockPositionAnimationArg
 import com.android.systemui.plugins.keyguard.ui.clocks.ThemeConfig
 import com.android.systemui.plugins.keyguard.ui.clocks.TimeFormatKind
 import java.util.Locale
+import com.android.systemui.plugins.keyguard.VRect
 
 /** A custom [DigitalClockFaceView] hosting several digital hands. */
 class ComposedDigitalLayerController(
@@ -71,11 +72,6 @@ class ComposedDigitalLayerController(
 
     override val events =
         object : ClockEvents {
-            override var isReactiveTouchInteractionEnabled: Boolean
-                get() = view.isReactiveTouchInteractionEnabled
-                set(value) {
-                    view.isReactiveTouchInteractionEnabled = value
-                }
 
             override fun onTimeZoneChanged(timeZone: TimeZone) {
                 layerControllers.forEach { it.events.onTimeZoneChanged(timeZone) }
@@ -132,7 +128,7 @@ class ComposedDigitalLayerController(
 
             override fun onFontSettingChanged(fontSizePx: Float) = view.onFontSettingChanged(fontSizePx)
 
-            override fun onTargetRegionChanged(targetRegion: Rect?) {}
+            override fun onTargetRegionChanged(targetRegion: VRect) {}
 
             override fun onSecondaryDisplayChanged(onSecondaryDisplay: Boolean) {}
         }

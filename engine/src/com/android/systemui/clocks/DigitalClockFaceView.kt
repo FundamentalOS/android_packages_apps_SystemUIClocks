@@ -24,6 +24,7 @@ import com.android.systemui.plugins.keyguard.data.model.ZenData
 import com.android.systemui.plugins.keyguard.ui.clocks.ClockPositionAnimationArgs
 import com.android.systemui.plugins.keyguard.ui.clocks.ThemeConfig
 import java.util.Locale
+import com.android.systemui.plugins.keyguard.VMeasurePoint
 
 /**
  * Base for the composed clock faces: owns a set of [SimpleDigitalClockTextView]s (which don't draw
@@ -87,7 +88,7 @@ abstract class DigitalClockFaceView(context: Context, messageBuffer: MessageBuff
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        getLogger().onMeasure(widthMeasureSpec, heightMeasureSpec)
+        getLogger().onMeasure(VMeasurePoint.fromSpecs(widthMeasureSpec, heightMeasureSpec))
         val size = calculateSize(widthMeasureSpec, heightMeasureSpec)
         if (size != null) setMeasuredDimension(size.x, size.y) else super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         calculateLeftTopPosition()

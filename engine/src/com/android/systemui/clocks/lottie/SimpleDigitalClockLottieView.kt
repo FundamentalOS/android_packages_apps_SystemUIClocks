@@ -42,6 +42,7 @@ import java.io.FileNotFoundException
 import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.min
+import com.android.systemui.plugins.keyguard.VMeasurePoint
 
 fun readLottieComposition(assets: AssetLoader, path: String): LottieComposition? {
     return try {
@@ -180,7 +181,7 @@ class SimpleDigitalClockLottieView(
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        logger.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        logger.onMeasure(VMeasurePoint.fromSpecs(widthMeasureSpec, heightMeasureSpec))
         innerWidth = 0f
         innerHeight = 0f
         for (c in text) {

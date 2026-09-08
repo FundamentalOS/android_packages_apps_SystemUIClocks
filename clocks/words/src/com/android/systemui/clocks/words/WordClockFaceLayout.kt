@@ -33,7 +33,7 @@ import com.android.compose.animation.scene.ElementContentScope
 import com.android.compose.animation.scene.ElementKey
 import com.android.compose.animation.scene.MovableElementContentScope
 import com.android.systemui.clocks.AssetLoader
-import com.android.systemui.customization.clocks.DefaultClockFaceLayout
+import com.android.systemui.customization.clocks.view.DefaultClockFaceLayout
 import com.android.systemui.customization.clocks.R as clocksR
 import com.android.systemui.customization.clocks.utils.ContextUtils.getSafeStatusBarHeight
 import com.android.systemui.plugins.keyguard.ui.clocks.AodClockBurnInModel
@@ -46,6 +46,7 @@ import com.android.systemui.plugins.keyguard.ui.composable.elements.LockscreenEl
 import com.android.systemui.plugins.keyguard.ui.composable.elements.LockscreenScope
 import com.android.systemui.plugins.keyguard.ui.composable.elements.MovableLockscreenElement
 import kotlin.math.roundToInt
+import com.android.systemui.plugins.keyguard.ui.composable.elements.BaseLockscreenElement.ElementSource
 
 /**
  * Pins the large word clock to the start of the lockscreen, a fixed distance below the keyguard's
@@ -70,10 +71,11 @@ class WordClockFaceLayoutLarge(
     private inner class LargeWordsElement : MovableLockscreenElement {
         override val key = LockscreenElementKeys.Clock.Large
         override val context: Context = view.context
+        override val source = ElementSource.DYNAMIC
 
         @Composable
         override fun LockscreenScope<MovableElementContentScope>.LockscreenElement() {
-            DefaultClockFaceLayout.clockView(view, Modifier.wrapContentSize().then(this.context.burnInModifier))
+            DefaultClockFaceLayout.ClockView(view, Modifier.wrapContentSize().burnInAware(isClock = true))
         }
     }
 
@@ -81,6 +83,7 @@ class WordClockFaceLayoutLarge(
     private inner class LargeWordRegionElement : LockscreenElement {
         override val key: ElementKey = LockscreenElementKeys.Region.Clock.Large
         override val context: Context = view.context
+        override val source = ElementSource.DYNAMIC
 
         @Composable
         override fun LockscreenScope<ElementContentScope>.LockscreenElement() {

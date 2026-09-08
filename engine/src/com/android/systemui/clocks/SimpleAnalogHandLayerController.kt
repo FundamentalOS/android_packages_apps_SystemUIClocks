@@ -19,7 +19,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.children
-import com.android.systemui.customization.clocks.DefaultClockFaceLayout
+import com.android.systemui.customization.clocks.view.DefaultClockFaceLayout
 import com.android.systemui.customization.clocks.R as clocksR
 import com.android.systemui.log.core.Logger
 import com.android.systemui.log.core.MessageBuffer
@@ -40,6 +40,7 @@ import com.android.systemui.plugins.keyguard.ui.clocks.TimeFormatKind
 import java.util.Locale
 import kotlin.math.max
 import kotlin.math.min
+import com.android.systemui.plugins.keyguard.VRect
 
 /** An analog hand: artwork rotated about the centre of a square view on every tick. */
 class SimpleAnalogHandLayerController(
@@ -80,8 +81,6 @@ class SimpleAnalogHandLayerController(
 
     override val events =
         object : ClockEvents {
-            override var isReactiveTouchInteractionEnabled = false
-
             override fun onTimeZoneChanged(timeZone: TimeZone) {
                 timespec.setTimeZone(timeZone)
                 faceEvents.onTimeTick()
@@ -143,7 +142,7 @@ class SimpleAnalogHandLayerController(
 
             override fun onFontSettingChanged(fontSizePx: Float) {}
 
-            override fun onTargetRegionChanged(targetRegion: Rect?) {}
+            override fun onTargetRegionChanged(targetRegion: VRect) {}
 
             override fun onSecondaryDisplayChanged(onSecondaryDisplay: Boolean) {}
         }

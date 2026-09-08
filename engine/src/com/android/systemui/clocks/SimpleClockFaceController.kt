@@ -20,7 +20,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.RelativeLayout
 import androidx.core.view.children
-import com.android.systemui.customization.clocks.DefaultClockFaceLayout
+import com.android.systemui.customization.clocks.view.DefaultClockFaceLayout
 import com.android.systemui.customization.clocks.R as clocksR
 import com.android.systemui.log.core.MessageBuffer
 import com.android.systemui.plugins.keyguard.data.model.AlarmData
@@ -40,6 +40,7 @@ import com.android.systemui.plugins.keyguard.ui.clocks.ThemeConfig
 import com.android.systemui.plugins.keyguard.ui.clocks.TimeFormatKind
 import java.util.Locale
 import kotlin.math.max
+import com.android.systemui.plugins.keyguard.VRect
 
 interface ClockEventUnion : ClockEvents, ClockFaceEvents
 
@@ -138,12 +139,6 @@ class SimpleClockFaceController(
 
     override val events =
         object : ClockEventUnion {
-            override var isReactiveTouchInteractionEnabled = false
-                set(value) {
-                    field = value
-                    layers.forEach { it.events.isReactiveTouchInteractionEnabled = value }
-                }
-
             override fun onTimeTick() {
                 timespecHandler.updateTime()
                 if (config.tickRate == ClockTickRate.PER_MINUTE || faceView.contentDescription != timespecHandler.getContentDescription()) {
@@ -180,12 +175,13 @@ class SimpleClockFaceController(
             // Deprecated upstream ("no longer necessary") but still driven by the connected-display
             // keyguard presentation, which lays the clock out with a ConstraintLayout.
             @Suppress("DEPRECATION")
-            override fun onTargetRegionChanged(targetRegion: Rect?) {
+            override fun onTargetRegionChanged(targetRegion: VRect) {
+                val region = targetRegion.toRect()
                 val v = faceView
                 if (v is DigitalClockFaceView && v.positionedByLayout) return
                 if (v is DigitalClockFaceView && v.isAlignedWithScreen) {
                     val topMargin = v.context.resources.getDimensionPixelSize(clocksR.dimen.keyguard_large_clock_top_margin)
-                    targetRegion?.let { region ->
+                    region.let { region ->
                         val (_, dy) = v.computeLayoutDiff(region, isLargeClock)
                         if (dy.toInt() != 0) {
                             v.translationY = dy - topMargin / 2
@@ -203,19 +199,19 @@ class SimpleClockFaceController(
                 }
 
                 val lp =
-                    if (maxHeight <= 0f || maxWidth <= 0f || targetRegion == null) {
+                    if (maxHeight <= 0f || maxWidth <= 0f) {
                         FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
                     } else {
                         val ratio =
-                            if (maxWidth / maxHeight > targetRegion.width() / targetRegion.height().toFloat())
-                                targetRegion.width() / maxWidth
-                            else targetRegion.height() / maxHeight
+                            if (maxWidth / maxHeight > region.width() / region.height().toFloat())
+                                region.width() / maxWidth
+                            else region.height() / maxHeight
                         FrameLayout.LayoutParams((maxWidth * ratio).toInt(), (maxHeight * ratio).toInt())
                     }
                 lp.gravity = Gravity.CENTER
                 faceView.layoutParams = lp
 
-                targetRegion?.let { region ->
+                region.let { region ->
                     val (dx, dy) = faceView.computeLayoutDiff(region, isLargeClock)
                     faceView.translationX = dx
                     faceView.translationY = dy

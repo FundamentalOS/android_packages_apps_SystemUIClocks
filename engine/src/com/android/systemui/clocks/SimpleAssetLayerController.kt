@@ -29,6 +29,7 @@ import com.android.systemui.plugins.keyguard.ui.clocks.ClockPositionAnimationArg
 import com.android.systemui.plugins.keyguard.ui.clocks.ThemeConfig
 import com.android.systemui.plugins.keyguard.ui.clocks.TimeFormatKind
 import java.util.Locale
+import com.android.systemui.plugins.keyguard.VRect
 
 /** A static artwork layer, centred at its intrinsic size. */
 class SimpleAssetLayerController(
@@ -50,8 +51,6 @@ class SimpleAssetLayerController(
 
     override val events =
         object : ClockEvents {
-            override var isReactiveTouchInteractionEnabled = false
-
             override fun onTimeZoneChanged(timeZone: TimeZone) {}
 
             override fun onTimeFormatChanged(formatKind: TimeFormatKind) {}
@@ -95,7 +94,7 @@ class SimpleAssetLayerController(
 
             override fun onFontSettingChanged(fontSizePx: Float) {}
 
-            override fun onTargetRegionChanged(targetRegion: Rect?) {}
+            override fun onTargetRegionChanged(targetRegion: VRect) {}
 
             override fun onSecondaryDisplayChanged(onSecondaryDisplay: Boolean) {}
         }
