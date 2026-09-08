@@ -2,6 +2,7 @@
 # (Android.bp); this only pulls them into the product. Plugin loading on user builds is enabled
 # via config_pluginAllowlist in vendor/fundamental/overlay/no-rro.
 
+# Android 17: stock CP2A prebuilts; the Words clock returns once the engine is ported.
 PRODUCT_PACKAGES += \
     SystemUIClocks-BigNum \
     SystemUIClocks-Calligraphy \
@@ -9,5 +10,4 @@ PRODUCT_PACKAGES += \
     SystemUIClocks-Inflate \
     SystemUIClocks-Metro \
     SystemUIClocks-NumOverlap \
-    SystemUIClocks-Weather \
-    SystemUIClocks-Words
+    SystemUIClocks-Weather

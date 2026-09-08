@@ -74,7 +74,7 @@ java_defaults {
 }
 
 android_app {
-    name: "SystemUIClocks-BigNum",
+    name: "SystemUIClocks-BigNum-src",
     defaults: ["FundamentalClocksAppDefaults"],
     manifest: "clocks/bignum/AndroidManifest.xml",
     srcs: ["clocks/bignum/src/**/*.kt"],
@@ -83,7 +83,7 @@ android_app {
 }
 
 android_app {
-    name: "SystemUIClocks-Calligraphy",
+    name: "SystemUIClocks-Calligraphy-src",
     defaults: ["FundamentalClocksAppDefaults"],
     manifest: "clocks/calligraphy/AndroidManifest.xml",
     srcs: ["clocks/calligraphy/src/**/*.kt"],
@@ -92,7 +92,7 @@ android_app {
 }
 
 android_app {
-    name: "SystemUIClocks-Growth",
+    name: "SystemUIClocks-Growth-src",
     defaults: ["FundamentalClocksAppDefaults"],
     manifest: "clocks/growth/AndroidManifest.xml",
     srcs: ["clocks/growth/src/**/*.kt"],
@@ -101,7 +101,7 @@ android_app {
 }
 
 android_app {
-    name: "SystemUIClocks-Inflate",
+    name: "SystemUIClocks-Inflate-src",
     defaults: ["FundamentalClocksAppDefaults"],
     manifest: "clocks/inflate/AndroidManifest.xml",
     srcs: ["clocks/inflate/src/**/*.kt"],
@@ -110,7 +110,7 @@ android_app {
 }
 
 android_app {
-    name: "SystemUIClocks-Metro",
+    name: "SystemUIClocks-Metro-src",
     defaults: ["FundamentalClocksAppDefaults"],
     manifest: "clocks/metro/AndroidManifest.xml",
     srcs: ["clocks/metro/src/**/*.kt"],
@@ -119,7 +119,7 @@ android_app {
 }
 
 android_app {
-    name: "SystemUIClocks-NumOverlap",
+    name: "SystemUIClocks-NumOverlap-src",
     defaults: ["FundamentalClocksAppDefaults"],
     manifest: "clocks/numoverlap/AndroidManifest.xml",
     srcs: ["clocks/numoverlap/src/**/*.kt"],
@@ -128,7 +128,7 @@ android_app {
 }
 
 android_app {
-    name: "SystemUIClocks-Weather",
+    name: "SystemUIClocks-Weather-src",
     defaults: ["FundamentalClocksAppDefaults"],
     manifest: "clocks/weather/AndroidManifest.xml",
     srcs: ["clocks/weather/src/**/*.kt"],
@@ -151,4 +151,86 @@ android_app {
         "androidx.compose.foundation_foundation-layout",
         "PlatformComposeSceneTransitionLayout",
     ],
+}
+
+// Android 17 (CP2A.260805.005): the seven stock Pixel clock plugins are shipped as
+// prebuilts re-signed with the platform key until the FundamentalOS clock engine
+// (engine/, used by the from-source "*-src" variants and the Words clock) is ported
+// to the Android 17 ClockProviderPlugin API. The stock APKs come from
+// /system_ext/priv-app of the CP2A factory image.
+android_app_import {
+    name: "SystemUIClocks-BigNum",
+    apk: "proprietary/system_ext/priv-app/SystemUIClocks-BigNum/SystemUIClocks-BigNum.apk",
+    certificate: "platform",
+    privileged: true,
+    system_ext_specific: true,
+    dex_preopt: {
+        enabled: false,
+    },
+}
+
+android_app_import {
+    name: "SystemUIClocks-Calligraphy",
+    apk: "proprietary/system_ext/priv-app/SystemUIClocks-Calligraphy/SystemUIClocks-Calligraphy.apk",
+    certificate: "platform",
+    privileged: true,
+    system_ext_specific: true,
+    dex_preopt: {
+        enabled: false,
+    },
+}
+
+android_app_import {
+    name: "SystemUIClocks-Growth",
+    apk: "proprietary/system_ext/priv-app/SystemUIClocks-Growth/SystemUIClocks-Growth.apk",
+    certificate: "platform",
+    privileged: true,
+    system_ext_specific: true,
+    dex_preopt: {
+        enabled: false,
+    },
+}
+
+android_app_import {
+    name: "SystemUIClocks-Inflate",
+    apk: "proprietary/system_ext/priv-app/SystemUIClocks-Inflate/SystemUIClocks-Inflate.apk",
+    certificate: "platform",
+    privileged: true,
+    system_ext_specific: true,
+    dex_preopt: {
+        enabled: false,
+    },
+}
+
+android_app_import {
+    name: "SystemUIClocks-Metro",
+    apk: "proprietary/system_ext/priv-app/SystemUIClocks-Metro/SystemUIClocks-Metro.apk",
+    certificate: "platform",
+    privileged: true,
+    system_ext_specific: true,
+    dex_preopt: {
+        enabled: false,
+    },
+}
+
+android_app_import {
+    name: "SystemUIClocks-NumOverlap",
+    apk: "proprietary/system_ext/priv-app/SystemUIClocks-NumOverlap/SystemUIClocks-NumOverlap.apk",
+    certificate: "platform",
+    privileged: true,
+    system_ext_specific: true,
+    dex_preopt: {
+        enabled: false,
+    },
+}
+
+android_app_import {
+    name: "SystemUIClocks-Weather",
+    apk: "proprietary/system_ext/priv-app/SystemUIClocks-Weather/SystemUIClocks-Weather.apk",
+    certificate: "platform",
+    privileged: true,
+    system_ext_specific: true,
+    dex_preopt: {
+        enabled: false,
+    },
 }
