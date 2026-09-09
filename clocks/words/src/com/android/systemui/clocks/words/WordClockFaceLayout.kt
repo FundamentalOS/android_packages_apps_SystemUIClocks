@@ -125,9 +125,23 @@ class WordClockFaceLayoutLarge(
         // put it.
         val guideline = assets.getResourcesId(SMALL_CLOCK_GUIDELINE_TOP)
         val guideBegin = constraints.getConstraint(guideline)?.layout?.guideBegin ?: -1
+        // The keyguard centres its large-clock date row (date / weather / alarm) under the clock
+        // container with a packed chain. The words are start-aligned, so start-align the row with
+        // them, and hang the small container off the row rather than off the words: the smartspace
+        // cards follow the small container, and would otherwise land on top of the date. Only when
+        // the keyguard has put the row under this face (smartspace can be off, and at large font
+        // scales the keyguard keeps the date beside the small clock instead).
+        val dateRow = resolveIdOrZero(assets, DATE_SMARTSPACE_VIEW_LARGE)
+        val dateRowBelowWords =
+            constraints.getConstraint(dateRow)?.let {
+                it.propertySet.visibility == View.VISIBLE && it.layout.topToBottom == large
+            } ?: false
+        if (dateRowBelowWords) {
+            constraints.setHorizontalBias(dateRow, 0f)
+        }
         if (guideline != 0 && guideBegin >= 0) {
             constraints.connect(large, TOP, guideline, BOTTOM, topOffset(resources))
-            constraints.connect(small, TOP, large, BOTTOM)
+            constraints.connect(small, TOP, if (dateRowBelowWords) dateRow else large, BOTTOM)
         }
         return constraints
     }
@@ -164,6 +178,8 @@ class WordClockFaceLayoutLarge(
         /** First line of the large face below the keyguard's small clock guideline. */
         const val TOP_OFFSET_DP = 219f
         const val SMALL_CLOCK_GUIDELINE_TOP = "small_clock_guideline_top"
+        /** The keyguard's date / weather row shown under the large clock. */
+        const val DATE_SMARTSPACE_VIEW_LARGE = "date_smartspace_view_large"
         const val KEYGUARD_CLOCK_TOP_MARGIN = "keyguard_clock_top_margin"
 
         /** Start inset of the words beyond the keyguard's clock padding. */
@@ -173,6 +189,10 @@ class WordClockFaceLayoutLarge(
 
         /** Distance from the keyguard's small clock guideline to the large face's first line. */
         fun topOffset(resources: Resources): Int = (TOP_OFFSET_DP * resources.displayMetrics.density).roundToInt()
+
+        /** A keyguard view id by name, or 0 when the host does not define it (previews). */
+        fun resolveIdOrZero(assets: AssetLoader, name: String): Int =
+            runCatching { assets.getResourcesId(name) }.getOrDefault(0)
 
         /** Top of the large face when the constraint set carries no small clock guideline. */
         fun fallbackTop(assets: AssetLoader, context: Context): Int {
