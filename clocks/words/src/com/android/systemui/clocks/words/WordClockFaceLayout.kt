@@ -152,6 +152,12 @@ class WordClockFaceLayoutLarge(
     @Deprecated("Unsupported with flexiglass. Move to composables.")
     override fun applyPreviewConstraints(clockPreviewConfig: ClockPreviewConfig, constraints: ConstraintSet): ConstraintSet {
         pinTopStart(constraints, resources, fallbackTop())
+        // Left-align the date row under the words, matching applyConstraints, so the picker
+        // preview looks like the real lock screen instead of centring the row.
+        val dateRow = resolveIdOrZero(assets, DATE_SMARTSPACE_VIEW_LARGE)
+        if (dateRow != 0) {
+            constraints.setHorizontalBias(dateRow, 0f)
+        }
         return constraints
     }
 
