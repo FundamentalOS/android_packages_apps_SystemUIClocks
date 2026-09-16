@@ -187,7 +187,14 @@ class WeatherClockFaceLayoutLarge(
         constraints.constrainHeight(ClockViewIds.WEATHER_CLOCK_TIME, WRAP_CONTENT)
         constraints.connect(ClockViewIds.WEATHER_CLOCK_TIME, TOP, PARENT_ID, TOP, view.statusBarHeight)
         constraints.connect(ClockViewIds.WEATHER_CLOCK_TIME, START, PARENT_ID, START, paddingStart)
-        constraints.connect(assets.getResourcesId(BC_SMARTSPACE_VIEW), TOP, ClockViewIds.WEATHER_CLOCK_TIME, BOTTOM)
+        // Centre the at-a-glance vertically between the time and the date, and align its start with
+        // the clock -- the keyguard otherwise gives it a narrower smartspace start margin than the
+        // time and date use.
+        val bcSmartspace = assets.getResourcesId(BC_SMARTSPACE_VIEW)
+        constraints.connect(bcSmartspace, TOP, ClockViewIds.WEATHER_CLOCK_TIME, BOTTOM)
+        constraints.connect(bcSmartspace, BOTTOM, ClockViewIds.WEATHER_CLOCK_DATE, TOP)
+        constraints.setVerticalBias(bcSmartspace, 0.5f)
+        constraints.connect(bcSmartspace, START, PARENT_ID, START, paddingStart)
 
         constraints.constrainWidth(ClockViewIds.WEATHER_CLOCK_DATE, WRAP_CONTENT)
         constraints.constrainHeight(ClockViewIds.WEATHER_CLOCK_DATE, WRAP_CONTENT)
